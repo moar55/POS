@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+html, body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  font-weight: 300;
+  background-image: url("/splash.png");
+  background-color: #220052;
+  overflow: hidden;
+}
+.body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.body-with-margin{
+    margin-left: 4%;
+}
+.title{
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+  color: #FDF20D;
+}
+.title2{
+  display: flex;
+  justify-content: center;
+  color: #FDF20D;
+  font-family: 'Dancing Script', cursive;
+  font-size: 4em;
+  margin-top: -1%;
+  font-weight: lighter !important;
+}
+
+.title h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 7em;
+  font-weight: bold;
+}
+.welcome {
+  font-size: 2em;
+  margin-top: 3%;
+  color: rgb(181, 155, 19);
+  font-family: 'Roboto Mono', monospace;
+}
+.login-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 199, 155,0.15);
+  margin-top: 85px;
+  width: 32.1rem;
+  height: 32.1rem;
+}
+.login-card h2 {
+  padding: 5px;
+  margin-top:-66px;
+  font-size: 25pt;
+  font-family: 'Dancing Script', cursive;
+  color: #FDF20D;
+  text-transform: capitalize;running
+}
+.login-card form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 17px;
+}
+.login-error {
+  color: #d61313;
+  font-family: 'Montserrat';
+  font-size: 15pt;
+  margin: 0.2rem;
+}
+form input{
+  width: 230px;
+  margin:5px;
+  padding: 5px;
+  background-color: #220052;
+  color: #FDF20D;
+  border: none;
+}
+::placeholder {
+  color: #FDF20D;
+}
+form button {
+  /*width: 55px;*/
+  background-color: #220052;
+  border: none;
+  padding: 10px 15px;
+  font-family: 'Dancing Script', cursive;
+  color: #FDF20D;
+  font-size: 1.5em;
+  margin-top: 12px;
+}
+
+.btn-bellino {
+  margin-top: 5%;
+  width: 35%;
+  height: 30rem;
+  font-size: 50pt;
+  font-family: Roboto;
+  color: #ffffff;
+  background-color: #450990;
+  border-color: rgb(70, 184, 218);
+}
+
+.btn-bellino:hover{
+  color: white !important;
+}
+
+.logout{
+  /*margin-right: 3%;*/
+}
+
+.logout-ico {
+  font-size: 2em;
+  color: #0b63ab;
+}
+
+.logout-button {
+  background-color: #220052;
+  border: none;
+  padding: 4px 2px;
+  font-family: 'Roboto Mono', monospace;
+  color: rgb(181, 155, 19);
+  float: right;
+  margin-right: 1.5%;
+  font-size: 1.5em;
+  margin-top: 10px;
+}
+thead {
+  background-color: #FDF20D;
+}
+tbody:nth-child(even) {
+  background-color: grey;
+}
+td {
+  border-top: 0px !important;
+}
+
+.dropup{
+  float: right;
+}

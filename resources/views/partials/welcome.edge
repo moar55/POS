@@ -1,0 +1,8 @@
+{{-- @include('partials.navbar') --}}
+<h2 class="welcome">Welcome {{auth.user.username}}</h2>
+<button id="inventory" type="button" class="btn btn-bellino btn-block"> Stock</button>
+
+<script type="text/javascript">
+  let inventory = document.getElementById('inventory')
+  inventory.onclick = () => location.href = "/stock"
+</script>
