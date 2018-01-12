@@ -8,7 +8,11 @@ class R extends Model {
     return 'rtkls'
   }
 
-  static async query(param) {
+  manufacturer() {
+    return this.belongsTo('App/Models/Manufacturer')
+  }
+
+  static async q(param) {
     return await Database
       .select('R')
       .from('rtkls')

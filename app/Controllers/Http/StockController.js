@@ -14,7 +14,7 @@ class StockController {
   }
 
   async query({request, resonse}) {
-    return await R.query(request.get().q)
+    return await R.query().select('R').fetch()
   }
 }
 

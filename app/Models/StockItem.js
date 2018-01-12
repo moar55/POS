@@ -10,24 +10,24 @@ class StockItem extends Model {
   }
 
   r () {
-    return this.hasOne('App/Models/R')
+    return this.belongsTo('App/Models/R','R','id')
   }
 
   static async  fetchGroupBy() {
-    return await Database
+    return await this
+      .query()
       .select('rtkls.R', 'color', 'size','rtkls.price')
-      .from('stock')
       .innerJoin('rtkls', 'stock.R', 'rtkls.id')
       .groupBy('rtkls.R','size', 'color', 'rtkls.price')
       .count('* as quantity')
   }
 
   static async fetch() {
-    return await  Database
+    return await this
+      .query()
       .select('rtkls.R','price', 'manufacturers.name as manufacturer')
-      .from('stock')
       .innerJoin('rtkls', 'stock.R', 'rtkls.id')
-      .innerJoin('manufacturers', 'rtkls.manufacturer', 'manufacturers.id')
+      .innerJoin('manufacturers', 'rtkls.manufacturer_id', 'manufacturers.id')
       .groupBy('R','price','manufacturers.name')
       .count('* as quantity')
   }
