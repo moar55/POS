@@ -13,16 +13,28 @@ class StockController {
     return view.render('stock')
   }
 
-  async query({request, resonse}) {
+  async query({request, response}) {
     let param = request.get().q
-    return await R
-      .query()
-      .select('R')
-      .where('R','LIKE',`${param}%`)
+    
+    try {
+      return await R
+        .query()
+        .select('R')
+        .where('R','LIKE',`${param}%`)
+    } catch (e) {
+      return response.status(500).json({err: "server error"})
+    }
   }
 
   async fetchGroupBy({ request, response, params }) {
-    return StockItem.fetchGroupBy(params.R)
+       try {
+         return await StockItem.fetchGroupBy(params.R)
+       } catch (e) {
+         if (e == "not found")
+          return response.status(404).json({err: e})
+         else
+          return response.status(500).json({err: e})
+       }
   }
 }
 
