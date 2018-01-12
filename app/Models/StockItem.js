@@ -13,13 +13,16 @@ class StockItem extends Model {
     return this.belongsTo('App/Models/R','R','id')
   }
 
-  static async  fetchGroupBy() {
+  static async  fetchGroupBy(param) {
+    param = param || "*"
     return await this
-      .query()
-      .select('rtkls.R', 'color', 'size','rtkls.price')
-      .innerJoin('rtkls', 'stock.R', 'rtkls.id')
-      .groupBy('rtkls.R','size', 'color', 'rtkls.price')
-      .count('* as quantity')
+    .query()
+    .select('rtkls.R','price','manufacturers.name as manufacturer', 'color', 'size')
+    .innerJoin('rtkls', 'stock.R', 'rtkls.id')
+    .innerJoin('manufacturers', 'rtkls.manufacturer_id', 'manufacturers.id')
+    .groupBy('rtkls.R','price','manufacturers.name', 'color', 'size')
+    .having('rtkls.R','=',param)
+    .count('* as quantity')
   }
 
   static async fetch() {
