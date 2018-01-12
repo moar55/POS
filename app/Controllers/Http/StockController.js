@@ -14,7 +14,15 @@ class StockController {
   }
 
   async query({request, resonse}) {
-    return await R.query().select('R').fetch()
+    let param = request.get().q
+    return await R
+      .query()
+      .select('R')
+      .where('R','LIKE',`${param}%`)
+  }
+
+  async fetchGroupBy({ request, response, params }) {
+    return StockItem.fetchGroupBy(params.R)
   }
 }
 
