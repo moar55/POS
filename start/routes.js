@@ -15,18 +15,18 @@
 
 const Route = use('Route')
 
-Route.on('/').render('landing')
+Route.post('api/login', 'UserController.login')
 
-Route.post('login', 'UserController.login')
-
-Route.get('logout', ({auth, response}) => {
+Route.post('api/logout', ({auth, response}) => {
   auth.logout()
-  response.redirect('/')
+  response.status(204).send()
 })
 
-Route.get('api/stock', 'StockController.query')
+Route.get('api/stock', 'StockController.fetch')
+.middleware('auth')
+
 Route.get('api/stock/:R', 'StockController.fetchGroupBy')
+  .middleware('auth')
 
-
-Route.get('stock', 'StockController.fetch')
-     .middleware('auth')
+Route.get('api/r', 'RController.query')
+  .middleware('auth')
