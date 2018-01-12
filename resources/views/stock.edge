@@ -34,7 +34,7 @@
       @each(item in items)
     		<tr>
             <td>
-              <a id="{{item.R}}" class="" data-toggle="modal" data-target="#myModal">
+              <a id="{{item.R}}" class="itemR" data-toggle="modal" data-target="#myModal">
                 {{ item.R }}
               </a>  
             </td>
@@ -77,7 +77,13 @@
 </div>
 {{--  end modals  --}}
 
-
   @include('includes.include-js')
+  <script>
+  $( document ).ready(function() {
+    console.log( "ready!" );
+      var itemRID = $('.itemR').id;
+      console.log(itemRID);
+});
+  <script>
   </body>
 </html>
