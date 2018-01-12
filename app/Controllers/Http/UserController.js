@@ -9,6 +9,7 @@ class UserController {
       await auth.attempt(username, password)
 
     } catch (e) {
+      console.log(e);
       session
           .withErrors({credentials: 'Wrong username or password'})
           .flashExcept()
