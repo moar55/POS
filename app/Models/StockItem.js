@@ -1,7 +1,7 @@
 'use strict'
 
 const Model = use('Model')
-const Database = use('Database')
+const R = use('App/Models/R')
 
 class StockItem extends Model {
 
@@ -13,16 +13,37 @@ class StockItem extends Model {
     return this.belongsTo('App/Models/R','R','id')
   }
 
-  static async  fetchGroupBy(param) {
-    param = param || "*"
-    return await this
-    .query()
-    .select('rtkls.R','price','manufacturers.name as manufacturer', 'color', 'size')
-    .innerJoin('rtkls', 'stock.R', 'rtkls.id')
-    .innerJoin('manufacturers', 'rtkls.manufacturer_id', 'manufacturers.id')
-    .groupBy('rtkls.R','price','manufacturers.name', 'color', 'size')
-    .having('rtkls.R','=',param)
-    .count('* as quantity')
+  static async fetchGroupBy(param) {
+    let r
+    try {
+     r = await R.findByOrFail('R', param)
+    }
+    catch(e) {
+      if (e.constructor.name == "ModelNotFoundException")
+         throw 'not found'
+    }
+
+    const price = r.price
+    try {
+      const manufacturer = await (await r.manufacturer())[0].name
+
+      const groups = await this
+        .query()
+        .select( 'color', 'size')
+        .innerJoin('rtkls', 'stock.R', 'rtkls.id')
+        .innerJoin('manufacturers', 'rtkls.manufacturer_id', 'manufacturers.id')
+        .groupBy('rtkls.R','color', 'size')
+        .having('rtkls.R','=',param)
+        .count('* as quantity')
+
+      let resp = {R: param, price: price, manufacturer: manufacturer, groups: groups}
+      return resp
+    } catch (e) {
+        throw 'server error'
+    } finally {
+
+    }
+
   }
 
   static async fetch() {
