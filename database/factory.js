@@ -15,7 +15,7 @@ const Factory = use('Factory')
 const Hash = use('Hash')
   Factory.blueprint('App/Models/User', async (faker) => {
     return {
-      username: 'bedo',
-      password: await Hash.make('test')
+      username: 'dude2',
+      password: await Hash.make('superman')
     }
   })

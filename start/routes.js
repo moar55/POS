@@ -26,5 +26,7 @@ Route.get('logout', ({auth, response}) => {
 
 Route.get('api/stock', 'StockController.query')
 
+Route.get('api/stock/:R', 'StockController.fetchGroupBy')
+
 Route.get('stock', 'StockController.fetch')
      .middleware('auth')
