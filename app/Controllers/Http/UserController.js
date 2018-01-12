@@ -7,14 +7,10 @@ class UserController {
 
     try {
       await auth.attempt(username, password)
+      return response.json({status: 'success'})
 
     } catch (e) {
-      console.log(e);
-      session
-          .withErrors({credentials: 'Wrong username or password'})
-          .flashExcept()
-    } finally {
-      return response.redirect('back');
+      return response.status(401).json({status: 'error', message:'wrong username or password'})
     }
   }
 }
