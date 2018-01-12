@@ -1,39 +1,29 @@
 'use strict'
 
 const StockItem = use('App/Models/StockItem')
-const R = use('App/Models/R')
 
 class StockController {
 
   async fetch({response, view}) {
-    let items =  await StockItem.fetch()
-    view.share({
-      items: items
-    })
-    return view.render('stock')
-  }
-
-  async query({request, response}) {
-    let param = request.get().q
-    
+    let items;
     try {
-      return await R
-        .query()
-        .select('R')
-        .where('R','LIKE',`${param}%`)
-    } catch (e) {
-      return response.status(500).json({err: "server error"})
+      items = await StockItem.fetch()
+      return await response.json({status: 'success', data: items})
+    } catch(e){
+      return response.status(500).json({status: 'error', message: "server error" + e})
     }
   }
 
+
   async fetchGroupBy({ request, response, params }) {
        try {
-         return await StockItem.fetchGroupBy(params.R)
+         const query =  await StockItem.fetchGroupBy(params.R)
+         return await {status: 'success', data: query}
        } catch (e) {
          if (e == "not found")
-          return response.status(404).json({err: e})
+          return response.status(404).json({status: 'error', message: e})
          else
-          return response.status(500).json({err: e})
+          return response.status(500).json({status: 'error', message: e})
        }
   }
 }
