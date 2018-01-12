@@ -12,12 +12,6 @@ class R extends Model {
     return this.belongsTo('App/Models/Manufacturer')
   }
 
-  static async q(param) {
-    return await Database
-      .select('R')
-      .from('rtkls')
-      .where('R', 'LIKE', `${param}%`)
-  }
 }
 
 module.exports = R
