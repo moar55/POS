@@ -1,0 +1,87 @@
+.title {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+    color: #FDF20D;
+}
+
+.title2 {
+    display: flex;
+    justify-content: center;
+    color: #FDF20D;
+    font-family: 'Dancing Script', cursive;
+    font-size: 4em;
+    margin-top: -1%;
+    font-weight: lighter !important;
+}
+
+.title h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 7em;
+    font-weight: bold;
+}
+
+.welcome {
+    font-size: 2em;
+    margin-top: 3%;
+    color: rgb(181, 155, 19);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.login-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 199, 155, 0.15);
+    margin-top: 85px;
+    width: 32.1rem;
+    height: 32.1rem;
+}
+
+.login-card h2 {
+    padding: 5px;
+    margin-top: -66px;
+    font-size: 25pt;
+    font-family: 'Dancing Script', cursive;
+    color: #FDF20D;
+    text-transform: capitalize;
+}
+
+.login-card form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 17px;
+}
+
+.login-error {
+    color: #d61313;
+    font-family: 'Montserrat';
+    font-size: 15pt;
+    margin: 0.2rem;
+}
+
+form input {
+    width: 230px;
+    margin: 5px;
+    padding: 5px;
+    background-color: #220052;
+    color: #FDF20D;
+    border: none;
+}
+
+::placeholder {
+    color: #FDF20D;
+}
+
+form button {
+    /*width: 55px;*/
+    background-color: #220052;
+    border: none;
+    padding: 12px 32px;
+    font-family: 'Dancing Script', cursive;
+    color: #FDF20D;
+    font-size: 1.5em;
+    margin-top: 12px;
+}
