@@ -12,11 +12,13 @@
 </div>
 <section class="login-card">
   <h2>Enter your credintials</h2>
-  <form class="login-form" action="login" method="post">
+  <form #loginForm="ngForm"  class="login-form" action="login" method="post">
       <!-- <p class="login-error">{{getErrorFor('credentials')}}</p> -->
-    <input type="text" name="username" value="" placeholder="User Name">
-    <input type="password" name="password" value=""  placeholder="Password">
-    <button type="submit" name="login-submit">login</button>
+<input [(ngModel)]="loginData.userName" #userName type="text" name="username" value="" placeholder="User Name" required>
+
+    <input [(ngModel)]="loginData.password" #password type="password" name="password" value=""  placeholder="Password" required>
+<button (click)="submit()" type="submit" name="login-submit">login</button>
+
   </form>
 
 </section>
