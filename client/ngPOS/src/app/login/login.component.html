@@ -1,0 +1,22 @@
+
+<div class="logout" *ngIf="loggedIn" >
+  <a type="button" class="logout-button" href="/logout">Logout</a>
+</div>
+
+<div class="body-with-margin">
+  <div class="body">
+    <section class="title">
+      <h1>Bellino</h1>
+    </section>
+  </div>
+</div>
+<section class="login-card">
+  <h2>Enter your credintials</h2>
+  <form class="login-form" action="login" method="post">
+      <!-- <p class="login-error">{{getErrorFor('credentials')}}</p> -->
+    <input type="text" name="username" value="" placeholder="User Name">
+    <input type="password" name="password" value=""  placeholder="Password">
+    <button type="submit" name="login-submit">login</button>
+  </form>
+
+</section>

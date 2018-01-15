@@ -1,1 +1,70 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+app-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  font-weight: 300;
+  background-image: url("/splash.png");
+  background-color: #220052;
+  overflow: hidden;
+}
+
+.btn-bellino {
+  margin-top: 5%;
+  width: 35%;
+  height: 30rem;
+  font-size: 50pt;
+  font-family: Roboto;
+  color: #ffffff;
+  background-color: #450990;
+  border-color: rgb(70, 184, 218);
+}
+
+.btn-bellino:hover{
+  color: white !important;
+}
+
+.logout{
+  /*margin-right: 3%;*/
+}
+
+.logout-ico {
+  font-size: 2em;
+  color: #0b63ab;
+}
+
+.logout-button {
+  background-color: #220052;
+  border: none;
+  padding: 4px 2px;
+  font-family: 'Roboto Mono', monospace;
+  color: rgb(181, 155, 19);
+  float: right;
+  margin-right: 1.5%;
+  font-size: 1.5em;
+  margin-top: 10px;
+}
+thead {
+  background-color: #FDF20D;
+}
+tbody:nth-child(even) {
+  background-color: grey;
+}
+td {
+  border-top: 0px !important;
+}
+
+.dropup{
+  float: right;
+}
