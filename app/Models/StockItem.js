@@ -13,6 +13,10 @@ class StockItem extends Model {
     return this.belongsTo('App/Models/R','R','id')
   }
 
+  order () {
+    return this.belongsTo('App/Models/Order')
+  }
+
   static async fetchGroupBy(param) {
     let r
     try {

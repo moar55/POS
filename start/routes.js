@@ -23,10 +23,14 @@ Route.post('api/logout', ({auth, response}) => {
 })
 
 Route.get('api/stock', 'StockController.fetch')
-.middleware('auth')
+  .middleware('auth')
+
+Route.post('api/stock', 'StockController.addItems')
+  .middleware('auth')
 
 Route.get('api/stock/:R', 'StockController.fetchGroupBy')
   .middleware('auth')
+
 
 Route.get('api/r', 'RController.query')
   .middleware('auth')
