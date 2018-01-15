@@ -28,7 +28,9 @@ class StockController {
       console.log(item);
       let validation = await Validator.validate(item, rules)
       if (validation.fails()){
-        return await response.status(400).json({status: "error", type: "validation", validation_error: validation.messages()})
+        return  new Promise(function(resolve, reject) {
+          resolve({status: "error", type: "validation", validation_error: validation.messages()})
+        });
       }
     }
   }
@@ -65,17 +67,11 @@ class StockController {
     const cost = requestObject.cost;
     const items = requestObject.items;
 
-    const itemRules = {
-      price: 'required',
-      color: 'required|string',
-      size: 'required|integer|range:16,38'
-    }
-    for (let item of items) {
-      let itemValidation = await Validator.validate(item, itemRules)
-      if (itemValidation.fails()){
-        return await response.status(400).json({status: "error", type: "validation", validation_error: itemValidation.messages()})
-      }
-    }
+    let notValid = await  StockController.validateItems(items, response)
+
+    if(notValid)
+       return response.status(400).json(notValid)
+
     const order = new Order()
     order.manufacturer_id = manufacturer, order.cost = cost, order.items = JSON.stringify(items)
     await order.save()
