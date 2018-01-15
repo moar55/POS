@@ -4,7 +4,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 app-login {
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 html, body {
   height: 100%;
@@ -16,14 +19,7 @@ body {
   background-color: #220052;
   overflow: hidden;
 }
-.body{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.body-with-margin{
-    margin-left: 4%;
-}
+
 .title{
   display: flex;
   justify-content: center;
