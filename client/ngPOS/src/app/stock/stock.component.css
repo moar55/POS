@@ -1,0 +1,16 @@
+
+h1 {
+    color: #FDF20D;
+    font-size: 8.5em;
+    margin: 50px auto;
+    font-family: 'Roboto Mono'
+}
+thead {
+  background-color: #FDF20D;
+}
+tbody:nth-child(even) {
+  background-color: grey;
+}
+td {
+  border-top: 0px !important;
+}

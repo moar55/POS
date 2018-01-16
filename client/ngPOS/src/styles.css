@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
-app-login {
+app-login, app-stock, app-add-order{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,10 +40,6 @@ body {
     color: white !important;
 }
 
-.logout {
-    /*margin-right: 3%;*/
-}
-
 .logout-ico {
     font-size: 2em;
     color: #0b63ab;
@@ -61,18 +57,3 @@ body {
     margin-top: 10px;
 }
 
-thead {
-    background-color: #FDF20D;
-}
-
-tbody:nth-child(even) {
-    background-color: grey;
-}
-
-td {
-    border-top: 0px !important;
-}
-
-.dropup {
-    float: right;
-}
