@@ -1,0 +1,41 @@
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 7em;
+    font-weight: bold;
+    color: #FDF20D;
+}
+form {
+    display:flex;
+    flex-direction: column;
+}
+fieldset {
+    width: 110%;
+    padding: 10px;
+    margin:15px auto;
+
+}
+legend {
+    color: #FDF20D;
+}
+output {
+    display:inline;
+    color: #FDF20D;
+}
+label {
+    color: #FDF20D;
+    margin-right: 8px;
+}
+input {
+    padding: 5x;
+    margin: 0px 3px;
+}
+button {
+    margin: 3px 0;
+    background: none;
+    /* border: none; */
+    font-size: 1em;
+    color:#FDF20D;
+}
+button span {
+    font-size: 1em;
+}

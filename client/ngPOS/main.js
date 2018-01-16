@@ -6,7 +6,7 @@ function createWindow () {
     width: 600, 
     height: 600,
     backgroundColor: '#ffffff',
-    // icon: `file://${__dirname}/dist/assets/logo.png`  put the app icon here
+    icon: `file://${__dirname}/dist/assets/logo.png`  //put the app icon here
   })
   win.loadURL(`file://${__dirname}/dist/index.html`) // hna mfrood n7ot el index el fe el dist folder lma n3ml ng build --prod
   //// uncomment below to open the DevTools.

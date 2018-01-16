@@ -1,9 +1,9 @@
 
 h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 7em;
+    font-weight: bold;
     color: #FDF20D;
-    font-size: 8.5em;
-    margin: 50px auto;
-    font-family: 'Roboto Mono'
 }
 thead {
   background-color: #FDF20D;
