@@ -14,6 +14,12 @@
 */
 
 const Route = use('Route')
+const Helpers = use('Helpers')
+
+// Route.get('/*', ({ request, response}) => {
+//   console.log(Helpers.resourcesPath(`../client/ngPOS/dist/index.html`))
+//   response.download(Helpers.resourcesPath(`../client/ngPOS/dist/index.html`))
+// })
 
 Route.post('api/login', 'UserController.login')
 

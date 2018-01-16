@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+require('electron-debug')({ showDevTools: true });
 let win;
 function createWindow () {
   // Create the browser window.
@@ -10,12 +11,16 @@ function createWindow () {
   })
   win.loadURL(`file://${__dirname}/dist/index.html`) // hna mfrood n7ot el index el fe el dist folder lma n3ml ng build --prod
   //// uncomment below to open the DevTools.
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
   // Event when the window is closed.
   win.on('closed', function () {
     win = null
   })
 }
+
+app.on('ready', () => {
+  win = new BrowserWindow();
+});
 // Create window on electron intialization
 app.on('ready', createWindow)
 // Quit when all windows are closed.
