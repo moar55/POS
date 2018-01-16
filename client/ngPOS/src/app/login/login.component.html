@@ -14,10 +14,10 @@
   <h2>Enter your credintials</h2>
   <form #loginForm="ngForm"  class="login-form" action="login" method="post">
       <!-- <p class="login-error">{{getErrorFor('credentials')}}</p> -->
-<input [(ngModel)]="loginData.userName" #userName type="text" name="username" value="" placeholder="User Name" required>
+<input [(ngModel)]="loginData.username" #username type="text" name="username" value="" placeholder="User Name" required>
 
     <input [(ngModel)]="loginData.password" #password type="password" name="password" value=""  placeholder="Password" required>
-<button (click)="submit()" type="submit" name="login-submit">login</button>
+<button (click)="submit(loginData)" type="submit" name="login-submit">login</button>
 
   </form>
 

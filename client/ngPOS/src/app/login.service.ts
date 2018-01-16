@@ -8,9 +8,14 @@ export class LoginService {
 
   constructor(public http: HttpClient) { }
 
+
+
   baseUrl = 'http://127.0.0.1:3333';
   login (loginData) {
-    return this.http.post(`${this.baseUrl}/api/login`, JSON.stringify(loginData));
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    // headers.append('Authorization', this.UserDataStored.token_type + ' ' + this.UserDataStored['access_token']);
+    return this.http.post(`${this.baseUrl}/api/login`,loginData)
 
   }
 

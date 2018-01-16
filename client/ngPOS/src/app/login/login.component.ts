@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './../login.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -11,18 +13,19 @@ export class LoginComponent implements OnInit {
 
   loggedIn = false;
   loginData = {
-    userName: '',
-    passWord: '',
+    username: '',
+    password: '',
   };
 
-  constructor(public login: LoginService) { }
+  constructor(public loginService: LoginService, public router: Router) { }
 
   ngOnInit() {
   }
   submit(loginData) {
-    this.login.login(this.loginData).subscribe( (res) => {
+    this.loginService.login(this.loginData)
+      .subscribe( (res) => {
       console.log(res);
-      // this.router.navigate(['stock']);
+      this.router.navigateByUrl('/stock');
   },
   err => {console.log(err); }
     );

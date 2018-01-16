@@ -5,28 +5,31 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
-app-login, app-stock, app-add-order{
+app-login,
+app-stock,
+app-add-order {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 app-add-order {
     color: black;
 }
-
 
 html,
 body {
     height: 100%;
     width: 100%;
+    /* background-image: url('./assets/splash.png'); */
 }
 
 body {
     font-weight: 300;
-    background-image: url("/splash.png");
+    background-image: url("./assets/splash.png");
     background-color: #220052;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .btn-bellino {
@@ -60,4 +63,3 @@ body {
     font-size: 1.5em;
     margin-top: 10px;
 }
-

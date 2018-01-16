@@ -4,38 +4,55 @@ h1 {
     font-weight: bold;
     color: #FDF20D;
 }
-form {
-    display:flex;
-    flex-direction: column;
-}
-fieldset {
-    width: 110%;
-    padding: 10px;
-    margin:15px auto;
 
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(56, 29, 99);
+    border: 1px solid rgb(158, 134, 197);
+    border-radius: 5px;
+    box-shadow: 7px 14px 30px -1px rgba(0, 0, 0, 0.59);
 }
+
+fieldset {
+    width: 100%;
+    padding: 10px;
+    margin: 15px auto;
+}
+
 legend {
     color: #FDF20D;
 }
+
 output {
-    display:inline;
+    display: inline;
     color: #FDF20D;
 }
+
 label {
+    font-size: 1.3em;
     color: #FDF20D;
-    margin-right: 8px;
+    margin:2px 8px;
 }
+
 input {
     padding: 5x;
-    margin: 0px 3px;
+    margin: 0px 5px;
+    border: 0.5px solid rgba(97, 85, 85, 0.733);
+    border-radius: 5px;
+    box-shadow:  1 1 8px rgba(0, 0, 0, 0.1), 1 1 16px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0 0 10px 0;
 }
+
 button {
     margin: 3px 0;
     background: none;
-    /* border: none; */
     font-size: 1em;
-    color:#FDF20D;
+    color: #FDF20D;
+    border-radius: 50%;
 }
+
 button span {
     font-size: 1em;
 }
