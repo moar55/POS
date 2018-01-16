@@ -11,6 +11,10 @@ app-login, app-stock, app-add-order{
     justify-content: center;
     align-items: center;
 }
+app-add-order {
+    color: black;
+}
+
 
 html,
 body {

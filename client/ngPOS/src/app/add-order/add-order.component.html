@@ -1,4 +1,23 @@
-<p>
-  add-order works!
-</p>
+<h1>
+  Add Order
+</h1>
 
+<form #addOrder="ngForm" action="" oninput="total.value=parseInt(price.value)*parseInt(quantity.value)">
+  <fieldset>
+    <legend>Order details:</legend>
+    <label>#: </label> <input type="text"><br>
+    <label>Date:  </label><input type="datetime-local"><br>
+    </fieldset>
+    <fieldset>
+    <legend>Items details</legend>
+    <label>R. :  </label><input type="text"> <br>
+    <label>Color:  </label> <input type="color"> <br>
+    <label>Size:  </label> <input type="text"> <br>
+    <label>Quantity:  </label> <input id="quantity" type="number" > 
+    <label>Price:  </label> <input id="price"type="number"> <br>
+    <label>Total:  </label> <output name="total" for="quantity price"></output>
+    <br>
+    <button>Add anthor item<span class="glyphicon glyphicon-plus"></span></button>
+    </fieldset>
+  
+</form>
