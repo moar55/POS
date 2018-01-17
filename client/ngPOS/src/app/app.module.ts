@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StockComponent } from './stock/stock.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AddOrderComponent } from './add-order/add-order.component';
+import { AddItemComponent } from './add-order/add-item/add-item.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AddOrderComponent } from './add-order/add-order.component';
     AppComponent,
     LoginComponent,
     StockComponent,
-    AddOrderComponent
+    AddOrderComponent,
+    AddItemComponent
   ],
   imports: [
     BrowserModule,
