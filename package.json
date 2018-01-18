@@ -29,6 +29,9 @@
     "@adonisjs/validator": "^4.0.8",
     "mysql": "^2.15.0"
   },
+  "engines": {
+    "node": "8.9.4"
+  }
   "devDependencies": {},
   "autoload": {
     "App": "./app"
