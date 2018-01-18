@@ -3,7 +3,7 @@
 const Env = use('Env')
 const Helpers = use('Helpers')
 const { URL } = require('url');
-const JAWS DB = new URL(Env.get('JAWSDB_URL'))
+const JAWSDB_URL = new URL(Env.get('JAWSDB_URL'))
 module.exports = {
   /*
   |--------------------------------------------------------------------------
