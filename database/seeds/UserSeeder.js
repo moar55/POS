@@ -16,13 +16,9 @@ const Hash = use('Hash')
 
 class UserSeeder {
   async run () {
-    // await Factory
-    // .model('App/Models/User')
-    // .create()
-    const user = new User();
-    user.username = 'dude'
-    user.password = await Hash.make('superman')
-    await user.save()
+    await Factory
+    .model('App/Models/User')
+    .create()
   }
 }
 
