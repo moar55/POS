@@ -12,7 +12,7 @@ export class StockService {
  }
 
 // TODO: See if possible to put baseUrl and headers setup in a file to be reused everywhere
- baseUrl = 'http://127.0.0.1:3333/api';
+ baseUrl = 'https://bellino-pos.herokuapp.com/api';
 
  list() {
    return this.http.get(this.baseUrl + '/stock')
