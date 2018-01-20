@@ -12,10 +12,10 @@ export class LoginService {
 
   baseUrl = 'http://127.0.0.1:3333';
   login (loginData) {
-    let headers = new Headers();
+    const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     // headers.append('Authorization', this.UserDataStored.token_type + ' ' + this.UserDataStored['access_token']);
-    return this.http.post(`${this.baseUrl}/api/login`,loginData)
+    return this.http.post(`${this.baseUrl}/api/login`, loginData );
 
   }
 
