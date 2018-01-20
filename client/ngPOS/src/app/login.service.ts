@@ -14,14 +14,14 @@ export class LoginService {
  }
 
 
-  baseUrl = 'http://127.0.0.1:3333';
+  baseUrl = 'http://127.0.0.1:3333/api';
   login (loginData) {
-    return this.http.post(`${this.baseUrl}/api/login`, loginData );
+    return this.http.post(`${this.baseUrl}/login`, loginData );
     // this.headers.append('Authorization', this.UserDataStored.token_type + ' ' + this.UserDataStored['access_token']);
   }
 
   logout(){
-    this.http.post(`${this.baseUrl}/api/logout`,{})
+    this.http.post(`${this.baseUrl}/logout`,{})
       .subscribe(
         () => {
         window.localStorage.setItem('isLoggedIn', 'false');
