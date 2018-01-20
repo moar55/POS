@@ -27,11 +27,12 @@
     "@adonisjs/session": "^1.0.19",
     "@adonisjs/shield": "^1.0.4",
     "@adonisjs/validator": "^4.0.8",
+    "adonis-swagger-jsdoc": "0.0.1",
     "mysql": "^2.15.0"
   },
   "engines": {
     "node": "8.9.4"
-  }
+  },
   "devDependencies": {},
   "autoload": {
     "App": "./app"
