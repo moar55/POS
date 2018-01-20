@@ -5,7 +5,7 @@ const Helpers = use('Helpers')
 const { URL } = require('url');
 const JAWSDB_URL = new URL(Env.get('JAWSDB_URL'),'http://localhost:3333')
 
-
+console.log(JAWSDB_URL);
 module.exports = {
   /*
   |--------------------------------------------------------------------------
