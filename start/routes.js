@@ -98,6 +98,6 @@ Route.get('api/stock/:R', 'StockController.fetchGroupBy')
 Route.get('api/r', 'RController.query')
   .middleware('auth')
 
-  Route.get('/*', ({ request, response}) => {
+  Route.get('/api', ({ request, response}) => {
     response.download(Helpers.resourcesPath(`../public/doc/index.html`))
   })
