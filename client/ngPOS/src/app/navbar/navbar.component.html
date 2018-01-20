@@ -1,5 +1,7 @@
 <nav>
-  <a  [routerLinkActive]="'active'" routerLink="/login">login</a>
+  <a [hidden]="loggedIn" [routerLinkActive]="'active'" routerLink="/login">login</a>
   <a routerLink="/stock">stock</a>
   <a routerLink="/add-order">add order</a>
+  <!-- TODO: make logout on right side (maybe add a font awesome icon) -->
+  <a style="cursor:pointer" (click) = "logout()">logout</a>
 </nav>

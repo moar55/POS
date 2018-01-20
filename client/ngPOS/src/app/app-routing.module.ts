@@ -4,21 +4,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { StockComponent } from './stock/stock.component';
 import { AddOrderComponent } from './add-order/add-order.component';
+import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './auth.guard';
+import { LoginGuard } from './login.guard';
 
 
 const routes: Routes = [
   {
-    path: 'login', component: LoginComponent
+    path: 'login', component: LoginComponent, canActivate: [LoginGuard]
   },
   {
-    path: '' , redirectTo: '/login' , pathMatch: 'full'
+    path: '' , component: HomeComponent , canActivate: [AuthGuard]
   },
   {
-    path: 'stock', component: StockComponent,
-    // canActivate: [AuthGuardService],
+    path: 'stock', component: StockComponent,canActivate: [AuthGuard]
   },
   {
-  path: 'add-order', component : AddOrderComponent
+  path: 'add-order', component : AddOrderComponent, canActivate: [AuthGuard]
+
   }
 ]
 

@@ -10,6 +10,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AddOrderComponent } from './add-order/add-order.component';
 import { AddItemComponent } from './add-order/add-item/add-item.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
+import { HttpModule } from '@angular/http';
+import { AuthGuard } from './auth.guard';
+import { LoginGuard } from './login.guard';
+
 
 
 @NgModule({
@@ -19,17 +24,20 @@ import { NavbarComponent } from './navbar/navbar.component';
     StockComponent,
     AddOrderComponent,
     AddItemComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-
+    HttpModule
   ],
   providers: [
     LoginService,
+    AuthGuard,
+    LoginGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -10,14 +10,19 @@
       <label>Date:  </label><input type="datetime-local">
     </div>
   </fieldset>
-  <fieldset>
-  <legend>Items details</legend>
-  <add-item></add-item>
-  <br>
-  <add-item></add-item>
-  <br>
-  <add-item></add-item>
-  <button class="add_items"><span class="glyphicon glyphicon-plus"></span></button>
+  <fieldset >
+    <legend>Items details</legend>
+    <div *ngFor = "let item of items; let i = index" [attr.data-index]="i">
+      <label>R. :  </label><input type="text" [(ngModel)] = "items[i].r" [ngModelOptions]="{standalone: true}">
+      <label>Color:  </label> <input type="text" [(ngModel)] = "items[i].color"  [ngModelOptions]="{standalone: true}">
+      <label>Size:  </label>
+      <select type="text" [(ngModel)] = "items[i].size"  [ngModelOptions]="{standalone: true}">
+        <option *ngFor = "let size of sizes">{{size}}</option>
+      </select>
+      <label>Quantity:  </label> <input id="quantity" type="number"  min="1" [(ngModel)] = "items[i].quantity"  [ngModelOptions]="{standalone: true}">
+      <label>Price:  </label> <input id="price"type="number"  min="0" [(ngModel)] = "items[i].price" [ngModelOptions]="{standalone: true}">
+    </div>
+    <button class="add_items" (click) = "addItem()"><span class="glyphicon glyphicon-plus"></span></button>
   </fieldset>
   <button class="done-btn">Done</button>
 </form>

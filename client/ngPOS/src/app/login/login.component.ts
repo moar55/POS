@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.loginData)
       .subscribe( (res) => {
       console.log(res);
-      this.router.navigateByUrl('/stock');
       window.localStorage.setItem('isLoggedIn', 'true');
+      this.router.navigateByUrl('/');
   },
   err => {console.log(err); }
     );
