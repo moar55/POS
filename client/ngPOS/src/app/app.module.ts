@@ -9,6 +9,7 @@ import { StockComponent } from './stock/stock.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AddOrderComponent } from './add-order/add-order.component';
 import { AddItemComponent } from './add-order/add-item/add-item.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AddItemComponent } from './add-order/add-item/add-item.component';
     LoginComponent,
     StockComponent,
     AddOrderComponent,
-    AddItemComponent
+    AddItemComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

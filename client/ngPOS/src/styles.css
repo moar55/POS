@@ -7,11 +7,21 @@
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
 app-login,
 app-stock,
-app-add-order {
+app-add-order,
+app-navbar
+ {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+app-navbar {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px;
+    box-shadow: 0px 5px 14px 1px black;
+    background: #260c3ede;
+
 }
 
 app-add-order {
