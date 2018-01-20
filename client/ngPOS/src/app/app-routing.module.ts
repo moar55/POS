@@ -14,7 +14,8 @@ const routes: Routes = [
     path: '' , redirectTo: '/login' , pathMatch: 'full'
   },
   {
-    path: 'stock', component: StockComponent
+    path: 'stock', component: StockComponent,
+    // canActivate: [AuthGuardService],
   },
   {
   path: 'add-order', component : AddOrderComponent

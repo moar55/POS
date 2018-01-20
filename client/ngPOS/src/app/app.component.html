@@ -2,9 +2,5 @@
 
 <!-- <app-login></app-login> -->
 
-<nav>
-    <a routerLink="/login" >login</a>
-    <a routerLink="/stock" >stock</a>
-    <a routerLink="/add-order" >add order</a>
-  </nav>
+<app-navbar *ngIf="showNavbar" ></app-navbar>
 <router-outlet></router-outlet>
