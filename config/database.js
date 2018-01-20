@@ -50,7 +50,7 @@ module.exports = {
   mysql: {
     client: 'mysql',
     connection: {
-      host: Env.get('DB_HOST', JAWSDB_URL.host),
+      host: Env.get('DB_HOST', JAWSDB_URL.hostname),
       port: Env.get('DB_PORT', JAWSDB_URL.port),
       user: Env.get('DB_USER', JAWSDB_URL.username),
       password: Env.get('DB_PASSWORD', JAWSDB_URL.password),
