@@ -77,7 +77,7 @@ Route.post('api/logout', ({auth, response}) => {
  * @url /api/stock
  */
 Route.get('api/stock', 'StockController.fetch')
-  .middleware('auth')
+  // .middleware('auth')
 
   /**
    * Add Items to stock
