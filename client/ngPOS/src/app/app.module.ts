@@ -15,6 +15,7 @@ import { HttpModule } from '@angular/http';
 import { AuthGuard } from './auth.guard';
 import { LoginGuard } from './login.guard';
 import { StockService } from './stock.service';
+import { OrdersComponent } from './orders/orders.component';
 
 
 
@@ -26,7 +27,8 @@ import { StockService } from './stock.service';
     AddOrderComponent,
     AddItemComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
