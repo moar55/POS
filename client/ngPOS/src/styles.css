@@ -8,68 +8,68 @@
 app-login,
 app-stock,
 app-add-order,
-app-navbar
- {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+app-navbar,
+app-orders {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-app-navbar {
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 10px;
-    box-shadow: 0px 5px 14px 1px black;
-    background: #260c3ede;
 
+app-navbar {
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 10px;
+  box-shadow: 0px 5px 14px 1px black;
+  background: #260c3ede;
 }
 
 app-add-order {
-    color: black;
+  color: black;
 }
 
 html,
 body {
-    height: 100%;
-    width: 100%;
-    /* background-image: url('./assets/splash.png'); */
+  height: 100%;
+  width: 100%;
+  /* background-image: url('./assets/splash.png'); */
 }
 
 body {
-    font-weight: 300;
-    background-image: url("./assets/splash.png");
-    background-color: #220052;
-    /* overflow: hidden; */
+  font-weight: 300;
+  background-image: url("./assets/splash.png");
+  background-color: #220052;
+  /* overflow: hidden; */
 }
 
 .btn-bellino {
-    margin-top: 5%;
-    width: 35%;
-    height: 30rem;
-    font-size: 50pt;
-    font-family: Roboto;
-    color: #ffffff;
-    background-color: #450990;
-    border-color: rgb(70, 184, 218);
+  margin-top: 5%;
+  width: 35%;
+  height: 30rem;
+  font-size: 50pt;
+  font-family: Roboto;
+  color: #ffffff;
+  background-color: #450990;
+  border-color: rgb(70, 184, 218);
 }
 
 .btn-bellino:hover {
-    color: white !important;
+  color: white !important;
 }
 
 .logout-ico {
-    font-size: 2em;
-    color: #0b63ab;
+  font-size: 2em;
+  color: #0b63ab;
 }
 
 .logout-button {
-    background-color: #220052;
-    border: none;
-    padding: 4px 2px;
-    font-family: 'Roboto Mono', monospace;
-    color: rgb(181, 155, 19);
-    float: right;
-    margin-right: 1.5%;
-    font-size: 1.5em;
-    margin-top: 10px;
+  background-color: #220052;
+  border: none;
+  padding: 4px 2px;
+  font-family: 'Roboto Mono', monospace;
+  color: rgb(181, 155, 19);
+  float: right;
+  margin-right: 1.5%;
+  font-size: 1.5em;
+  margin-top: 10px;
 }

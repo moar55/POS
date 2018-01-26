@@ -23,13 +23,13 @@ export class LoginComponent implements OnInit {
   }
   submit(loginData) {
     this.loginService.login(this.loginData)
-      .subscribe( (res) => {
-      console.log(res);
-      window.localStorage.setItem('isLoggedIn', 'true');
-      this.router.navigateByUrl('/');
-  },
-  err => {console.log(err); }
-    );
+      .subscribe((res) => {
+        console.log(res);
+        window.localStorage.setItem('isLoggedIn', 'true');
+        this.router.navigateByUrl('/');
+      },
+      err => { console.log(err); }
+      );
 
   }
 }
