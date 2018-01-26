@@ -8,9 +8,12 @@ const Validator = use('Validator')
 
 class StockController {
 
-  async fetch({response, view}) {
-    if(!auth.check())
+  async fetch({response, view, auth}) {
+    try {
+      auth.check()
+    } catch(err) {
       return await response.status(401).json({status: 'error', message: 'Unauthorized'})
+    }
     let items;
     try {
       items = await StockItem.fetch()
@@ -38,7 +41,12 @@ class StockController {
   }
 
 
-  async fetchGroupBy({ request, response, params }) {
+  async fetchGroupBy({ request, response, params, auth}) {
+    try {
+      auth.check()
+    } catch(err) {
+      return await response.status(401).json({status: 'error', message: 'Unauthorized'})
+    }
        try {
          const query =  await StockItem.fetchGroupBy(params.R)
          return await {status: 'success', data: query}
@@ -50,7 +58,12 @@ class StockController {
        }
   }
 
-  async addItems({ request, response}) {
+  async addItems({ request, response, auth}) {
+    try {
+      auth.check()
+    } catch(err) {
+      return await response.status(401).json({status: 'error', message: 'Unauthorized'})
+    }
     const requestObject = request.all()
 
     const rules = {
@@ -77,10 +90,10 @@ class StockController {
     const order = new Order()
     order.manufacturer_id = manufacturer, order.cost = cost, order.items = JSON.stringify(items)
     await order.save()
-    for (let item of items) {
-        const r = await R.findOrCreate({R: item.R, manufacturer_id: manufacturer, price: item.price})  // add R. if it doesn't exist
-        const stockItem = await StockItem.create({color: item.color, R: r.id, size: item.size, order_id: order.id})
-      }
+    // for (let item of items) {
+    //     const r = await R.findOrCreate({R: item.R, manufacturer_id: manufacturer, price: item.price})  // add R. if it doesn't exist
+    //     const stockItem = await StockItem.create({color: item.color, R: r.id, size: item.size, order_id: order.id})
+    //   }
     return  response.json({status: "success"})
   }
 }

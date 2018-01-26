@@ -15,11 +15,6 @@ const User = use('App/Models/User')
 const Hash = use('Hash')
 
 class UserSeeder {
-  async run () {
-    await Factory
-    .model('App/Models/User')
-    .create()
-  }
-}
 
+}
 module.exports = UserSeeder
