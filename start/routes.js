@@ -89,14 +89,14 @@ Route.get('api/stock', 'StockController.fetch')
    * @url /api/stock
    */
 Route.post('api/stock', 'StockController.addItems')
-  .middleware('auth')
+  // .middleware('auth')
 
 Route.get('api/stock/:R', 'StockController.fetchGroupBy')
-  .middleware('auth')
+  // .middleware('auth')
 
 
 Route.get('api/r', 'RController.query')
-  .middleware('auth')
+  // .middleware('auth')
 
   Route.get('/api', ({ request, response}) => {
     response.download(Helpers.resourcesPath(`../public/doc/index.html`))
