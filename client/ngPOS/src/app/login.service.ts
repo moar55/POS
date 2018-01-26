@@ -20,15 +20,15 @@ export class LoginService {
     // this.headers.append('Authorization', this.UserDataStored.token_type + ' ' + this.UserDataStored['access_token']);
   }
 
-  logout(){
-    this.http.post(`${this.baseUrl}/logout`,{})
+  logout() {
+    this.http.post(`${this.baseUrl}/logout`, {})
       .subscribe(
         () => {
         window.localStorage.setItem('isLoggedIn', 'false');
-        return this.router.navigateByUrl('/login')
+        return this.router.navigateByUrl('/login');
         },
         (err) => {
           alert(err);
-        })
+        });
   }
 }

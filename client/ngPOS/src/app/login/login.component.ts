@@ -21,7 +21,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-  submit(loginData) {
+
+  logVal(formValue) {
+    console.log(formValue);
+  }
+  submit(loginData) {         // maybe next time we should just pass loginForm.val and do not need to create the loginData obj.
     this.loginService.login(this.loginData)
       .subscribe( (res) => {
       console.log(res);
