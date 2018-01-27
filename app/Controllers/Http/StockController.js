@@ -12,7 +12,7 @@ class StockController {
     try {
       await auth.check()
     } catch(err) {
-      return await response.status(401).json({status: 'error', message: 'Unauthorized', deatailedError: err})
+      return await response.status(401).json({status: 'error', message: 'Unauthorized'})
     }
     let items;
     try {
