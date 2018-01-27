@@ -1,10 +1,11 @@
+import { HomePageComponent } from './home-page/home-page.component';
+import { EditStockItemComponent } from './edit-stock-item/edit-stock-item.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { StockComponent } from './stock/stock.component';
 import { AddOrderComponent } from './add-order/add-order.component';
-import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth.guard';
 import { LoginGuard } from './login.guard';
 import { OrdersComponent } from './orders/orders.component';
@@ -15,7 +16,10 @@ const routes: Routes = [
     path: 'login', component: LoginComponent, canActivate: [LoginGuard]
   },
   {
-    path: '', component: HomeComponent, canActivate: [AuthGuard]
+    path: 'home', component: HomePageComponent, canActivate: [AuthGuard]
+  },
+  {
+  path: '', redirectTo: '/home', pathMatch: 'full'
   },
   {
     path: 'stock', component: StockComponent, canActivate: [AuthGuard]
@@ -25,7 +29,9 @@ const routes: Routes = [
   },
   {
     path: 'orders', component: OrdersComponent,
-
+  },
+  {
+    path: 'stock/:R', component: EditStockItemComponent,
   }
 ];
 

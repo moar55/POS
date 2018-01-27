@@ -9,7 +9,8 @@ app-login,
 app-stock,
 app-add-order,
 app-navbar,
-app-orders {
+app-orders,
+app-edit-stock-item {
   display: flex;
   flex-direction: column;
   justify-content: center;

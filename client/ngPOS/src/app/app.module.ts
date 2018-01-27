@@ -10,12 +10,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AddOrderComponent } from './add-order/add-order.component';
 import { AddItemComponent } from './add-order/add-item/add-item.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
 import { HttpModule } from '@angular/http';
 import { AuthGuard } from './auth.guard';
 import { LoginGuard } from './login.guard';
 import { StockService } from './stock.service';
 import { OrdersComponent } from './orders/orders.component';
+import { EditStockItemComponent } from './edit-stock-item/edit-stock-item.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 
@@ -27,8 +28,9 @@ import { OrdersComponent } from './orders/orders.component';
     AddOrderComponent,
     AddItemComponent,
     NavbarComponent,
-    HomeComponent,
-    OrdersComponent
+    OrdersComponent,
+    EditStockItemComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

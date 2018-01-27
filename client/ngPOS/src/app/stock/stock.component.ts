@@ -7,7 +7,8 @@ import { StockService } from '../stock.service';
   styleUrls: ['./stock.component.css']
 })
 export class StockComponent implements OnInit {
-  stock = [];
+  stock: any;
+  editMode = false;
 
   constructor(public stockService: StockService) { }
 
@@ -16,14 +17,14 @@ export class StockComponent implements OnInit {
       .subscribe(
       (resp) => {
         console.log(resp);
-        this.stock = resp.data;
+        this.stock = resp['data'];
         console.log(this.stock);
-
       },
       (err) => console.log(err)
       );
   }
   editStockItem(stockItem) {
+    this.editMode = !this.editMode;
     console.log(stockItem);
   }
   deleteStockItem(stockItem) {

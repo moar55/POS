@@ -17,5 +17,8 @@ export class StockService {
   list() {
     return this.http.get(this.baseUrl + '/stock');
   }
+  getStockItem(R) {
+    return this.http.get(`${this.baseUrl}/stock/${R}`);
+  }
 
 }

@@ -1,0 +1,23 @@
+h1,
+h2,
+h3 {
+  font-family: 'Dancing Script', cursive;
+  /* font-size: 7em; */
+  font-weight: bold;
+  color: #FDF20D;
+}
+
+thead {
+  background-color: #FDF20D;
+}
+
+tbody:nth-child(even) {
+  background-color: grey;
+}
+
+td,
+th {
+  border-top: 0px !important;
+  border: 1px solid;
+  text-align: center;
+}
