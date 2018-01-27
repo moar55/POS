@@ -17,7 +17,7 @@ class RController {
     }
 
     try {
-      return await R
+        return await R
         .query()
         .select('R')
         .where('R','LIKE',`${param}%`)

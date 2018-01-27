@@ -29,8 +29,7 @@ class StockItem extends Model {
 
     const price = r.price
     try {
-      const manufacturer = await (await r.manufacturer())[0].name
-
+      const manufacturer = await(await r.manufacturer().fetch()).name
       const groups = await this
         .query()
         .select( 'color', 'size')

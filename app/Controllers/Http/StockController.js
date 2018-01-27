@@ -42,11 +42,11 @@ class StockController {
 
 
   async fetchGroupBy({ request, response, params, auth}) {
-    try {
-      await auth.check()
-    } catch(err) {
-      return await response.status(401).json({status: 'error', message: 'Unauthorized'})
-    }
+    // try {
+    //   await auth.check()
+    // } catch(err) {
+    //   return await response.status(401).json({status: 'error', message: 'Unauthorized'})
+    // }
        try {
          const query =  await StockItem.fetchGroupBy(params.R)
          return await {status: 'success', data: query}
