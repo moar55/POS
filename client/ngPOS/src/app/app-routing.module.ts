@@ -19,7 +19,7 @@ const routes: Routes = [
     path: 'home', component: HomePageComponent, canActivate: [AuthGuard]
   },
   {
-  path: '', redirectTo: '/home', pathMatch: 'full'
+    path: '', redirectTo: '/home', pathMatch: 'full'
   },
   {
     path: 'stock', component: StockComponent, canActivate: [AuthGuard]
