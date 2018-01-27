@@ -20,7 +20,11 @@ const Hash = use('Hash')
     }
   })
 
-  const range = (start, end) => Math.ceil(Math.random() * end) + start
+  function range(start, end) {
+    start = Math.ceil(start);
+    end = Math.floor(end);
+    return Math.floor(Math.random() * (end - start + 1)) + start;
+  }
 
   Factory.blueprint('App/Models/Order', async (faker) => {
     let items = []

@@ -15,12 +15,13 @@ const Manufacturer = use('App/Models/Manufacturer')
 
 class OrderSeeder {
   async run () {
-    const manufacturersParams = [{name: 'Crocs'}, {name: 'Nike'}, {name: 'Zalat'}]
-    const manufacturers = await Manufacturer.createMany(manufacturersParams)
+    await Manufacturer.findOrCreate({name: 'Crocs'})
+    await Manufacturer.findOrCreate({name: 'Nike'})
+    await Manufacturer.findOrCreate({name: 'Zalat'})
 
     await Factory
     .model('App/Models/Order')
-    .create()
+    .createMany('5')
   }
 }
 

@@ -10,7 +10,7 @@ class StockController {
 
   async fetch({response, view, auth}) {
     try {
-      auth.check()
+      await auth.check()
     } catch(err) {
       return await response.status(401).json({status: 'error', message: 'Unauthorized'})
     }
@@ -43,7 +43,7 @@ class StockController {
 
   async fetchGroupBy({ request, response, params, auth}) {
     try {
-      auth.check()
+      await auth.check()
     } catch(err) {
       return await response.status(401).json({status: 'error', message: 'Unauthorized'})
     }
@@ -60,7 +60,7 @@ class StockController {
 
   async addItems({ request, response, auth}) {
     try {
-      auth.check()
+      await auth.check()
     } catch(err) {
       return await response.status(401).json({status: 'error', message: 'Unauthorized'})
     }

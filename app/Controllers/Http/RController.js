@@ -6,7 +6,7 @@ class RController {
 
   async query({request, response}) {
     try {
-      auth.check()
+      await auth.check()
     } catch(err) {
       return await response.status(401).json({status: 'error', message: 'Unauthorized'})
     }
