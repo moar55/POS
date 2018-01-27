@@ -5,6 +5,11 @@ const R = use('App/Models/R')
 class RController {
 
   async query({request, response}) {
+    try {
+      await auth.check()
+    } catch(err) {
+      return await response.status(401).json({status: 'error', message: 'Unauthorized'})
+    }
     let param = request.get().q
 
     if (!request.get().hasOwnProperty('q')) {
@@ -12,7 +17,7 @@ class RController {
     }
 
     try {
-      return await R
+        return await R
         .query()
         .select('R')
         .where('R','LIKE',`${param}%`)
