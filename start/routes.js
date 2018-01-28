@@ -101,3 +101,5 @@ Route.get('api/r', 'RController.query')
   Route.get('/api', ({ request, response}) => {
     response.download(Helpers.resourcesPath(`../public/doc/index.html`))
   })
+
+  Route.get('api/orders', 'OrderController.fetch')
