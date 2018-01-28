@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { RequestOptions } from '@angular/http';
 // import 'rxjs/add/operator/map';
 
 
@@ -10,9 +9,7 @@ export class LoginService {
 
   headers;
   constructor(public http: HttpClient, private router: Router) {
-    this.headers = new Headers();
-    this.headers.append('Content-Type', 'application/json');
-    this.headers.append('Access-Control-Allow-Credentials','true')
+    this.headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Credentials':'true'})
   }
 
 
