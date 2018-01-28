@@ -9,11 +9,11 @@ const Validator = use('Validator')
 class StockController {
 
   async fetch({response, view, auth}) {
-    try {
-      await auth.check()
-    } catch(err) {
-      return await response.status(401).json({status: 'error', message: 'Unauthorized'})
-    }
+    // try {
+    //   await auth.check()
+    // } catch(err) {
+    //   return await response.status(401).json({status: 'error', message: 'Unauthorized'})
+    // }
     let items;
     try {
       items = await StockItem.fetch()
