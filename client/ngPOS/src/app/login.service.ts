@@ -9,8 +9,7 @@ export class LoginService {
 
   headers;
   constructor(public http: HttpClient, private router: Router) {
-    this.headers = new Headers();
-    this.headers.append('Content-Type', 'application/json');
+    this.headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Credentials':'true'})
   }
 
 
