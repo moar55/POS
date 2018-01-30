@@ -57,6 +57,9 @@ const Helpers = use('Helpers')
 Route.post('api/login', 'UserController.login')
 
 
+Route.get('api/manufacturers', 'ManufacturerController.fetch')
+
+
 /**
  * User Logout
  *
@@ -77,27 +80,35 @@ Route.post('api/logout', ({auth, response}) => {
  * @url /api/stock
  */
 Route.get('api/stock', 'StockController.fetch')
+Route.put('api/stock', 'StockController.update')
   // .middleware('auth')
 
-  /**
-   * Add Items to stock
-   *
-   * @section Stock
-   * @type post
-   * @param {number} manufacturer
-   * @param {string} password
-   * @url /api/stock
-   */
-Route.post('api/stock', 'StockController.addItems')
-  // .middleware('auth')
+// Route.put('api/stock/', 'StockController.edit')
+
 
 Route.get('api/stock/:R', 'StockController.fetchGroupBy')
   // .middleware('auth')
 
 
 Route.get('api/r', 'RController.query')
+
+Route.put('api/r/:R', 'RController.edit')
   // .middleware('auth')
 
-  Route.get('/api', ({ request, response}) => {
-    response.download(Helpers.resourcesPath(`../public/doc/index.html`))
-  })
+Route.get('/api', ({ request, response}) => {
+  response.download(Helpers.resourcesPath(`../public/doc/index.html`))
+})
+
+
+Route.get('api/orders', 'OrderController.fetch')
+/**
+ * Add a new order
+ *
+ * @section Orders
+ * @type post
+ * @param {number} manufacturer
+ * @param {string} password
+ * @url /api/stock
+ */
+Route.post('api/orders', 'OrderController.addOrder')
+// .middleware('auth')

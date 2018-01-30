@@ -3,8 +3,6 @@
 const StockItem = use('App/Models/StockItem')
 const R = use('App/Models/R')
 const Order = use('App/Models/Order')
-const Validator = use('Validator')
-
 
 class StockController {
 
@@ -23,30 +21,13 @@ class StockController {
     }
   }
 
-  static async validateItems(items, response) {
-    const rules = {
-      price: 'required',
-      color: 'required|string',
-      size: 'required|integer|range:16,38'
-    }
-    for (let item of items) {
-      console.log(item);
-      let validation = await Validator.validate(item, rules)
-      if (validation.fails()){
-        return  new Promise(function(resolve, reject) {
-          resolve({status: "error", type: "validation", validation_error: validation.messages()})
-        });
-      }
-    }
-  }
-
 
   async fetchGroupBy({ request, response, params, auth}) {
-    try {
-      await auth.check()
-    } catch(err) {
-      return await response.status(401).json({status: 'error', message: 'Unauthorized'})
-    }
+    // try {
+    //   await auth.check()
+    // } catch(err) {
+    //   return await response.status(401).json({status: 'error', message: 'Unauthorized'})
+    // }
        try {
          const query =  await StockItem.fetchGroupBy(params.R)
          return await {status: 'success', data: query}
@@ -58,43 +39,57 @@ class StockController {
        }
   }
 
-  async addItems({ request, response, auth}) {
-    try {
-      await auth.check()
-    } catch(err) {
-      return await response.status(401).json({status: 'error', message: 'Unauthorized'})
-    }
-    const requestObject = request.all()
+  async update({ request, response}) {
+    let params = request.get()
+    const reqParams = request.all()
 
-    const rules = {
-      manufacturer: 'required|integer',
-      cost: 'required',
-      items: 'required|array'
-    }
-
-    const validation = await Validator.validate(request.all(), rules)
-
-    if (validation.fails()){
-      return response.status(400).json({status: "error", type: "validation", validation_error: validation.messages()})
+    if (params.R != reqParams.R) {
+      const r = await R.findBy('R', reqParams.R)
+      const paramsTemp = Object.assign({}, params)
+      delete paramsTemp['manufacturer']; delete paramsTemp['price'];
+      await StockItem
+        .query()
+        .where(paramsTemp)
+        .update()
     }
 
-    const manufacturer = requestObject.manufacturer;
-    const cost = requestObject.cost;
-    const items = requestObject.items;
 
-    let notValid = await  StockController.validateItems(items, response)
+    let paramsClone =  Object.assign({}, params)
+    Object.keys(paramsClone).forEach((key) => {
+      paramsClone[`rtkls.${key}`] = paramsClone[key]
+      delete paramsClone[key]
+    })
+    (params.R != reqParams.R)?paramsClone.R = reqParams.R: paramsClone = paramsClone
+    delete paramsClone['manufacturer']; delete paramsClone['price'];
 
-    if(notValid)
-       return response.status(400).json(notValid)
+    const count = await StockItem
+      .query()
+      .innerJoin('rtkls', 'stock.R', 'rtkls.id')
+      .where(paramsClone)
+      .count()
 
-    const order = new Order()
-    order.manufacturer_id = manufacturer, order.cost = cost, order.items = JSON.stringify(items)
-    await order.save()
-    // for (let item of items) {
-    //     const r = await R.findOrCreate({R: item.R, manufacturer_id: manufacturer, price: item.price})  // add R. if it doesn't exist
-    //     const stockItem = await StockItem.create({color: item.color, R: r.id, size: item.size, order_id: order.id})
-    //   }
-    return  response.json({status: "success"})
+    const diff = reqParams - count[0]['count(*)']
+    if(diff != 0) {
+      if(diff > 0) {
+        const objects = []
+        for (var i = 0; i < diff; i++) {
+          objects.push({color: reqParams.color, size: reqParams.size, R: r.id})
+        }
+        await StockItem.createMany(objects)
+      }
+      else {
+        await StockItem
+          .query()
+          .innerJoin('rtkls', 'stock.R', 'rtkls.id')
+          .where(paramsClone)
+          .delete()
+      }
+    }
+
+
+
+
+    return response.send();
   }
 }
 
