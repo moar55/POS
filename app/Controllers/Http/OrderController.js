@@ -22,13 +22,19 @@ class OrderController {
     return orders
   }
 
-  async fetchByID({ response, request}) {
+  async fetchByID({ response, request, params}) {
+    console.log(request.get());
+    // const order = await Order.first()
+    // // console.log(order);
+    // return await order.manufacturer().fetch()
     let orders =
     await Order
       .query()
       .select('orders.*', 'manufacturers.name as manufacturer')
+      // .with('manufacturer')
       .innerJoin('manufacturers', 'manufacturers.id', 'orders.manufacturer_id')
-      .where('orders.id', '=', 17)
+      .where('orders.id', '=', params.id)
+      // .fetch()
       orders[0].items = JSON.parse(orders[0].items);
       return orders
   }
