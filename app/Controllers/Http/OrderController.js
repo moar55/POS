@@ -16,7 +16,7 @@ class OrderController {
       .innerJoin('manufacturers', 'manufacturers.id', 'orders.manufacturer_id')
 
     console.log(orders);
-    orders = orders.rows.map((order) => {
+    orders = orders.map((order) => {
           order.items = JSON.parse(order.items)
           return order
     })
