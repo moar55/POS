@@ -31,6 +31,8 @@ export class EditStockItemComponent implements OnInit {
       },
       err => console.log('err is', err)
       );
+  }
+  doneEditing() {
 
   }
 

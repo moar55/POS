@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 @Injectable()
-export class StockService {
+export class OrdersService {
 
   headers;
   constructor(private http: HttpClient) {
@@ -13,12 +13,14 @@ export class StockService {
   baseUrl = 'https://bellino-pos.herokuapp.com/api';
 
   list() {
-    return this.http.get(this.baseUrl + '/stock', {
+    return this.http.get(this.baseUrl + '/orders', {
       withCredentials: true,
     });
   }
-  getStockItem(R) {
-    return this.http.get(`${this.baseUrl}/stock/${R}`);
+  getManfs() {
+    return this.http.get(`${this.baseUrl}/manufacturers`);
   }
-
+  getOrderDetails(id) {
+    return this.http.get(`${this.baseUrl}/orders/${id}`);
+  }
 }
