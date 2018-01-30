@@ -13,9 +13,11 @@ class OrderController {
     await Order
       .query()
       .select('orders.id','manufacturer_id','name as manufacturer','items', 'cost')
-      .innerJoin('manufacturers')
+      .innerJoin('manufacturers', 'manufacturers.id', 'orders.manufacturer_id')
+      .paginate(1)
 
-    orders = orders.map((order) => {
+    console.log(orders);
+    orders = orders.rows.map((order) => {
           order.items = JSON.parse(order.items)
           return order
     })
