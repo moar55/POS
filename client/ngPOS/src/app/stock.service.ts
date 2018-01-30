@@ -14,7 +14,9 @@ export class StockService {
   baseUrl = 'https://bellino-pos.herokuapp.com/api';
 
   list() {
-    return this.http.get(this.baseUrl + '/stock');
+    return this.http.get(this.baseUrl + '/stock', {
+      withCredentials: true,
+    });
   }
   getStockItem(R) {
     return this.http.get(`${this.baseUrl}/stock/${R}`);

@@ -1,3 +1,28 @@
 * {
   color: yellow;
 }
+
+.home {
+  margin: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+button {
+  margin: 20px;
+  padding: 35px;
+  width: 40%;
+  border-color: rgb(88, 70, 252);
+  border-radius: 10px;
+  font-size: 4.5em;
+  color: blueviolet;
+  background-color: rgb(255, 255, 0);
+  text-transform: capitalize;
+  box-shadow: 1px 2px 20px 1px black;
+}
+
+a {
+  color: blueviolet;
+  background-color: rgb(255, 255, 0);
+}
