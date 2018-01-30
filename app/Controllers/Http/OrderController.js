@@ -14,7 +14,6 @@ class OrderController {
       .query()
       .select('orders.id','manufacturer_id','name as manufacturer','items', 'cost')
       .innerJoin('manufacturers', 'manufacturers.id', 'orders.manufacturer_id')
-      .paginate(1)
 
     console.log(orders);
     orders = orders.rows.map((order) => {
