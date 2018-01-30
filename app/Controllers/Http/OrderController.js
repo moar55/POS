@@ -15,12 +15,22 @@ class OrderController {
       .select('orders.*', 'manufacturers.name as manufacturer')
       .innerJoin('manufacturers', 'manufacturers.id', 'orders.manufacturer_id')
 
-    console.log(orders);
     orders = orders.map((order) => {
-          order.items = JSON.parse(order.items)
+          order.items = undefined;
           return order
     })
     return orders
+  }
+
+  async fetchByID({ response, request}) {
+    let orders =
+    await Order
+      .query()
+      .select('orders.*', 'manufacturers.name as manufacturer')
+      .innerJoin('manufacturers', 'manufacturers.id', 'orders.manufacturer_id')
+      .where('orders.id', '=', 17)
+      orders[0].items = JSON.parse(orders[0].items);
+      return orders
   }
 
   async addOrder({ request, response, auth}) {

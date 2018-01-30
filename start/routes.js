@@ -101,6 +101,8 @@ Route.get('/api', ({ request, response}) => {
 
 
 Route.get('api/orders', 'OrderController.fetch')
+Route.get('api/orders/:id', 'OrderController.fetchByID')
+
 /**
  * Add a new order
  *

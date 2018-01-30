@@ -61,7 +61,7 @@ class StockController {
       })
     const r = await R
         .query()
-        .where({id: params.R})
+        .where({id: updateObject.R})
         .update(updateObjectClone)
     }
 
