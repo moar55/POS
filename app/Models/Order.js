@@ -14,7 +14,7 @@ class Order extends Model {
   }
 
   manufacturer () {
-    return this.hasOne('App/Models/Manufacturer', 'orders.manufacturer_id', 'manufacturers.id')
+    return this.belongsTo('App/Models/Manufacturer')
   }
 
 }

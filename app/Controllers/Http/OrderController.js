@@ -23,20 +23,15 @@ class OrderController {
   }
 
   async fetchByID({ response, request, params}) {
-    console.log(request.get());
-    // const order = await Order.first()
-    // // console.log(order);
-    // return await order.manufacturer().fetch()
     let orders =
     await Order
       .query()
-      .select('orders.*', 'manufacturers.name as manufacturer')
-      // .with('manufacturer')
-      .innerJoin('manufacturers', 'manufacturers.id', 'orders.manufacturer_id')
+      .with('manufacturer')
       .where('orders.id', '=', params.id)
-      // .fetch()
-      orders[0].items = JSON.parse(orders[0].items);
-      return orders
+      .fetch()
+      orders.rows[0].$attributes.items = JSON.parse(orders.rows[0].$attributes.items);
+      orders.rows[0].$attributes.manufacturer_id = undefined
+      return orders.rows[0]
   }
 
   async addOrder({ request, response, auth}) {
