@@ -12,7 +12,7 @@ class OrderController {
     let orders =
     await Order
       .query()
-      .select('orders.id','manufacturer_id','name as manufacturer','items', )
+      .select('orders.id','manufacturer_id','name as manufacturer','items', 'cost')
       .innerJoin('manufacturers')
 
     orders = orders.map((order) => {
