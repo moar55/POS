@@ -1,19 +1,24 @@
 'use strict'
 
 const Order = use('App/Models/Order')
+const Manufacturer = use('App/Models/Manufacturer')
 const {validateItems} = use('App/Helpers')
 const Validator = use('Validator')
 
 class OrderController {
 
   async fetch({response, view, auth}) {
-    let orders =  await Order.all();
 
-    orders = orders
-      .rows.map((order) => {
+    let orders =
+    await Order
+      .query()
+      .select('orders.id','manufacturer_id','name as manufacturer','items', )
+      .innerJoin('manufacturers')
+
+    orders = orders.map((order) => {
           order.items = JSON.parse(order.items)
           return order
-      })
+    })
     return orders
   }
 
@@ -26,7 +31,7 @@ class OrderController {
     const requestObject = request.all()
 
     const rules = {
-      manufacturer: 'required|integer',
+      manufacturer_id: 'required|integer',
       cost: 'required',
       items: 'required|array'
     }
@@ -47,7 +52,7 @@ class OrderController {
        return response.status(400).json(notValid)
 
     const order = new Order()
-    order.manufacturer_id = manufacturer, order.cost = cost, order.items = JSON.stringify(items)
+    order.manufacturer_id = manufacturer_id, order.cost = cost, order.items = JSON.stringify(items)
     await order.save()
 
     return  response.json({status: "success"})

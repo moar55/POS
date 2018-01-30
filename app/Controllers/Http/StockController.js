@@ -3,6 +3,7 @@
 const StockItem = use('App/Models/StockItem')
 const R = use('App/Models/R')
 const Order = use('App/Models/Order')
+const Manufacturer = use('App/Models/Manufacturer')
 
 class StockController {
 
@@ -41,53 +42,55 @@ class StockController {
 
   async update({ request, response}) {
     let params = request.get()
-    const reqParams = request.all()
+    const updateObject = request.all()
 
-    if (params.R != reqParams.R) {
-      const r = await R.findBy('R', reqParams.R)
-      const paramsTemp = Object.assign({}, params)
-      delete paramsTemp['manufacturer']; delete paramsTemp['price'];
-      await StockItem
+    const rParams= await R.findBy('R', updateObject.R)
+    const rUpdate = await R.findBy('R', params.R)
+    params.R = rParams.id;
+    updateObject.R = rUpdate.id;
+    delete params['manufacturer_id']; delete params['price'];
+
+    const quantity = updateObject.quantity;
+    delete updateObject['quantity']
+
+  //  Update R related values
+    if(updateObject.manufacturer_id || updateObject.price) {
+      let updateObjectClone = Object.assign({}, updateObject)
+      Object.keys(updateObjectClone).forEach((key) => { // remove manufacturer_id and price from updateObject and keep them only in case of the clone (to update the R attrs)
+        (key != 'manufacturer_id' && key != 'price')?delete updateObjectClone[key]:delete updateObject[key]
+      })
+    const r = await R
         .query()
-        .where(paramsTemp)
-        .update()
+        .where({id: params.R})
+        .update(updateObjectClone)
     }
 
+  //  Update stock
+    await StockItem
+      .query()
+      .where(params)
+      .update(updateObject)
 
-    let paramsClone =  Object.assign({}, params)
-    Object.keys(paramsClone).forEach((key) => {
-      paramsClone[`rtkls.${key}`] = paramsClone[key]
-      delete paramsClone[key]
-    })
-    (params.R != reqParams.R)?paramsClone.R = reqParams.R: paramsClone = paramsClone
-    delete paramsClone['manufacturer']; delete paramsClone['price'];
-
+  // add or delete items from stock
     const count = await StockItem
       .query()
-      .innerJoin('rtkls', 'stock.R', 'rtkls.id')
-      .where(paramsClone)
+      .where(updateObject)
       .count()
 
-    const diff = reqParams - count[0]['count(*)']
+    const diff = quantity - count[0]['count(*)']
     if(diff != 0) {
       if(diff > 0) {
         const objects = []
-        for (var i = 0; i < diff; i++) {
-          objects.push({color: reqParams.color, size: reqParams.size, R: r.id})
-        }
+        objects.fill(updateObject)
         await StockItem.createMany(objects)
       }
       else {
         await StockItem
           .query()
-          .innerJoin('rtkls', 'stock.R', 'rtkls.id')
-          .where(paramsClone)
+          .where(updateObject)
           .delete()
       }
     }
-
-
-
 
     return response.send();
   }
