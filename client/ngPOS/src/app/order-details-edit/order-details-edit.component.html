@@ -1,10 +1,10 @@
-<!-- <h2>
-  Editing order with ID: {{R}}
+<h2>
+  You are now Editing order with ID: {{orderDetails.id}}
 </h2>
 <h3>
-  price: {{stockItemFullDetails.price}}
+  It has costed you: {{orderDetails.cost | currency:'EGP'}}
 </h3>
-<h3>manf: {{stockItemFullDetails.manufacturer}}</h3>
+<h3>manf: {{orderDetails.manufacturer}}</h3>
 
 
 <div class="container">
@@ -14,22 +14,25 @@
         <th>R</th>
         <th>Color</th>
         <th>Size</th>
-        <th>Quantity</th>
+        <!-- <th>size</th> -->
         <th>Price</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of stockItem">
+      <tr *ngFor="let item of orderDetails.items">
         <td>
-          <input type="text" required [(ngModel)]="item.color" /> </td>
+          <input type="text" required [(ngModel)]="item.R" /> </td>
+        <td>
+          <input type="text" required [(ngModel)]="item.color" />
+        </td>
         <td>
           <input type="text" required [(ngModel)]="item.size" />
         </td>
         <td>
-          <input type="text" required [(ngModel)]="item.quantity" />
+          <input type="text" required [(ngModel)]="item.price" />
         </td>
       </tr>
     </tbody>
   </table>
-  <button (click)="doneEditing()">Done Editing</button>
-</div> -->
+  <!-- <button (click)="doneEditing()">Done Editing</button> -->
+</div>

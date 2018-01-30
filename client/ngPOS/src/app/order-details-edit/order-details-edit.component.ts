@@ -14,13 +14,15 @@ export class OrderDetailsEditComponent implements OnInit {
   orderID = this.route.snapshot.paramMap.get('id');
   ngOnInit() {
     this.getOrderDetails(this.orderID);
+    console.log('order details are nginit', this.orderDetails);
   }
+
   getOrderDetails(orderID) {
     this.orderServ.getOrderDetails(orderID)
       .subscribe(res => {
         console.log('res is', res);
-        this.orderDetails = res;
-        console.log();
+        this.orderDetails = res[0];
+        console.log('order details are', this.orderDetails);
 
       },
       err => console.log(err),
