@@ -54,7 +54,7 @@ class OrderController {
       return response.status(400).json({status: "error", type: "validation", validation_error: validation.messages()})
     }
 
-    const manufacturer = requestObject.manufacturer_id;
+    const manufacturer_id = requestObject.manufacturer_id;
     const cost = requestObject.cost;
     const items = requestObject.items;
     const date = requestObject.date
