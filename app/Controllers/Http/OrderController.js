@@ -54,9 +54,10 @@ class OrderController {
       return response.status(400).json({status: "error", type: "validation", validation_error: validation.messages()})
     }
 
-    const manufacturer = requestObject.manufacturer;
+    const manufacturer = requestObject.manufacturer_id;
     const cost = requestObject.cost;
     const items = requestObject.items;
+    const date = requestObject.date
 
     let notValid = await validateItems(items, response)
 
@@ -68,6 +69,11 @@ class OrderController {
     await order.save()
 
     return  response.json({status: "success"})
+  }
+
+  async update({ request, response }) {
+    let params =  request.get()
+    const updateObject = request.post()
   }
 }
 

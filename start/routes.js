@@ -22,6 +22,9 @@ const Helpers = use('Helpers')
 // })
 
 
+Route.get('/api', ({ request, response}) => {
+  response.download(Helpers.resourcesPath(`../public/doc/index.html`))
+})
 
 /**
  * @api {post} /api/login
@@ -95,9 +98,6 @@ Route.get('api/r', 'RController.query')
 Route.put('api/r/:R', 'RController.edit')
   // .middleware('auth')
 
-Route.get('/api', ({ request, response}) => {
-  response.download(Helpers.resourcesPath(`../public/doc/index.html`))
-})
 
 
 Route.get('api/orders', 'OrderController.fetch')
@@ -114,3 +114,5 @@ Route.get('api/orders/:id', 'OrderController.fetchByID')
  */
 Route.post('api/orders', 'OrderController.addOrder')
 // .middleware('auth')
+
+Route.put('api/orders/:id', 'OrderController.update')

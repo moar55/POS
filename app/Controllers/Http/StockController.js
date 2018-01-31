@@ -49,12 +49,14 @@ class StockController {
     return query
   }
 
-  async update({ request, response}) {
+  async update({ request, response }) {
     let params =  request.get()
     const updateObject = request.post()
-    console.log(StockController.jsonToSQL({x: '3amo', y:'booty', z: 43}));
     const rParams= await R.findBy('R', params.R)
-    const rUpdate = await R.findBy('R', updateObject.R)
+    const rUpdate = await R.findOrCreate(
+      {R: updateObject.R},
+      {R: updateObject.R, price: updateObject.price, manufacturer_id: updateObject.manufacturer_id, size: updateObject.size}
+    )
     params.R = rParams.id;
     updateObject.R = rUpdate.id;
     delete params.price;
@@ -77,7 +79,6 @@ class StockController {
     }
 
     console.log(params);
-    debugger;
   //  Update stock
     const updates= await StockItem
       .query()
