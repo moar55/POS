@@ -4,6 +4,7 @@ const StockItem = use('App/Models/StockItem')
 const R = use('App/Models/R')
 const Order = use('App/Models/Order')
 const Manufacturer = use('App/Models/Manufacturer')
+const Database = use('Database')
 
 class StockController {
 
@@ -39,20 +40,30 @@ class StockController {
           return response.status(500).json({status: 'error', message: e})
        }
   }
+  // {x:}
+
+  static jsonToSQL(json) {
+    let strJSON = JSON.stringify(json)
+    // console.log(strJSON.replace(/({|})/g,'').split(',').map((item) => item.split(':'))
+    let query = strJSON.replace(/({|})/g,'').split(',').map((item) => item.split(':').map((item, index) => (index == 0)?item.replace(/"/g, '') + '=': item.replace(/"/g,"'")).join('')).join(' and ')
+    return query
+  }
 
   async update({ request, response}) {
-    let params = request.get()
-    const updateObject = request.all()
-
-    const rParams= await R.findBy('R', updateObject.R)
-    const rUpdate = await R.findBy('R', params.R)
+    let params =  request.get()
+    const updateObject = request.post()
+    console.log(StockController.jsonToSQL({x: '3amo', y:'booty', z: 43}));
+    const rParams= await R.findBy('R', params.R)
+    const rUpdate = await R.findBy('R', updateObject.R)
     params.R = rParams.id;
     updateObject.R = rUpdate.id;
-    delete params['manufacturer_id']; delete params['price'];
-
+    delete params.price;
+    delete params.manufacturer_id;
     const quantity = updateObject.quantity;
-    delete updateObject['quantity']
+    delete updateObject.quantity
 
+    if(params.size)
+      params.size = Number(params.size)
   //  Update R related values
     if(updateObject.manufacturer_id || updateObject.price) {
       let updateObjectClone = Object.assign({}, updateObject)
@@ -65,30 +76,36 @@ class StockController {
         .update(updateObjectClone)
     }
 
+    console.log(params);
+    debugger;
   //  Update stock
-    await StockItem
+    const updates= await StockItem
       .query()
       .where(params)
       .update(updateObject)
 
+    console.log(updateObject);
   // add or delete items from stock
     const count = await StockItem
       .query()
       .where(updateObject)
       .count()
-
-    const diff = quantity - count[0]['count(*)']
-    if(diff != 0) {
+      console.log(count[0]['count(*)']);
+    const diff = (quantity)?quantity - count[0]['count(*)']: null
+    console.log(diff);
+    if(diff && diff != 0) {
       if(diff > 0) {
-        const objects = []
-        objects.fill(updateObject)
-        await StockItem.createMany(objects)
+        let objects = [1]
+        updateObject.order_id = -1
+        objects.fill(updateObject,0,diff)
+        console.log(objects);
+        const items = await StockItem.createMany(objects)
+        console.log(items);
       }
       else {
-        await StockItem
-          .query()
-          .where(updateObject)
-          .delete()
+        console.log('hello');
+
+        await Database.raw(`DELETE FROM stock where ${StockController.jsonToSQL(updateObject)} limit ${Math.abs(diff)}`)
       }
     }
 
