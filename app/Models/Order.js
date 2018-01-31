@@ -13,6 +13,10 @@ class Order extends Model {
     return 'orders'
   }
 
+  manufacturer () {
+    return this.belongsTo('App/Models/Manufacturer')
+  }
+
 }
 
 module.exports = Order
