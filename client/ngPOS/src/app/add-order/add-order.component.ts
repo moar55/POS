@@ -6,33 +6,54 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-order.component.css']
 })
 export class AddOrderComponent implements OnInit {
-
-  items: Item[]
-  sizes: number[]
+  item = {
+    r: null,
+    color: null,
+    size: null,
+    quantity: null,
+    price: null,
+  };
+  order = {
+    manufacturer: null,
+    cost: null,
+    items: [this.item,],
+    // created_at: "2018-01-15 12:49:47",
+  };
+  // items: Item[];
+  sizes: number[];
   constructor() {
-    this.items = new Array();
-    for (let i in [1, 2, 3])
-      this.items.push(new Item())
-    this.sizes = Array.from(Array(21).keys()).map((i) => i + 17)
+    console.log(this.order.items);
+
+    // tslint:disable-next-line:forin
+    for (const i in [1, 2, 3]) {
+      // tslint:disable-next-line:no-shadowed-variable
+      this.sizes = Array.from(Array(21).keys()).map((i) => i + 17);
+    }
   }
 
   ngOnInit() {
+
   }
 
   addItem() {
-    this.items.push(new Item());
+    let newItem = {
+      r: null,
+      color: null,
+      size: null,
+      quantity: null,
+      price: null,
+    };
+    newItem = Object.assign(newItem, this.item);
+    this.order['items'].push(newItem);
   }
 
   wow() {
-    console.log(this.items);
+    console.log(this.order['items']);
+  }
+  onSubmit() {
+    console.log(this.order);
   }
 
 }
 
-class Item {
-  r: string;
-  color: string;
-  size: number;
-  quantity: number;
-  price: number;
-}
+

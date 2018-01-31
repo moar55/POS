@@ -2,27 +2,38 @@
   Add Order
 </h1>
 
-<form #addOrder="ngForm" action="" >
+<form #addOrder="ngForm" action="">
   <fieldset>
-  <div class="order-details">
+    <div class="order-details">
       <legend>Order details:</legend>
-      <label>#: </label> <input type="text">
-      <label>Date:  </label><input type="datetime-local">
+      <label>#: </label>
+      <input type="text">
+      <label>Date: </label>
+      <input type="datetime-local">
     </div>
   </fieldset>
-  <fieldset >
+  <fieldset ngModelGroup="item">
     <legend>Items details</legend>
-    <div *ngFor = "let item of items; let i = index" [attr.data-index]="i">
-      <label>R. :  </label><input type="text" [(ngModel)] = "items[i].r" [ngModelOptions]="{standalone: true}">
-      <label>Color:  </label> <input type="text" [(ngModel)] = "items[i].color"  [ngModelOptions]="{standalone: true}">
-      <label>Size:  </label>
-      <select type="text" [(ngModel)] = "items[i].size"  [ngModelOptions]="{standalone: true}">
-        <option *ngFor = "let size of sizes">{{size}}</option>
+    <div *ngFor="let item of order.items; index as i ;trackBy: i;">
+
+      <label>R. : </label>
+      <input type="text" [(ngModel)]="item.r" name="R">
+      <br> {{item |json}} item index {{i}}
+
+      <label>Color: </label>
+      <input type="text" [(ngModel)]="item.color" name="color">
+      <label>Size: </label>
+      <select type="text" [(ngModel)]="item.size" name="size">
+        <option *ngFor="let size of sizes">{{size}}</option>
       </select>
-      <label>Quantity:  </label> <input id="quantity" type="number"  min="1" [(ngModel)] = "items[i].quantity"  [ngModelOptions]="{standalone: true}">
-      <label>Price:  </label> <input id="price"type="number"  min="0" [(ngModel)] = "items[i].price" [ngModelOptions]="{standalone: true}">
+      <label>Quantity: </label>
+      <input id="quantity" type="number" name="quantity" min="1" [(ngModel)]="item.quantity">
+      <label>Price: </label>
+      <input id="price" type="number" name="price" min="0" [(ngModel)]="item.price">
     </div>
-    <button class="add_items" (click) = "addItem()"><span class="glyphicon glyphicon-plus"></span></button>
+    <button class="add_items" (click)="addItem()">
+      <span class="glyphicon glyphicon-plus"></span>
+    </button>
   </fieldset>
-  <button class="done-btn">Done</button>
+  <button class="done-btn" type="submit" (click)="onSubmit()">Done</button>
 </form>
