@@ -13,16 +13,17 @@
       <input type="datetime-local">
       <label>Manufacturer: </label>
       <!-- <input type="text" name="manufacturer" [(ngModel)]="order.manufacturer"> -->
-      <select [(ngModel)]="manufacturer" name="manfufacturer">
-
-        <option *ngFor="let manf of manufacturer" name="manufacturerID" [ngValue]="manf.id">{{manf.name}}</option>
+      <select [(ngModel)]="order.manufacturer_id" name="manfufacturer">
+        <option *ngFor="let manufacturer of manufacturers" name="manufacturerID" [ngValue]="manufacturer.id">{{manufacturer.name}}</option>
       </select>
-
     </div>
   </fieldset>
   <fieldset>
     <legend>Items details</legend>
     <div *ngFor="let item of order.items; index as i ;trackBy: i;">
+
+      <!-- *ngFor="let item of order.items; index as i ;trackBy: i;" -->
+
 
       <label>R. : </label>
       <input type="text" [(ngModel)]="item.r" name="R" required>
@@ -32,7 +33,7 @@
       <input type="text" [(ngModel)]="item.color" name="color" required>
       <label>Size: </label>
       <select type="text" [(ngModel)]="item.size" name="size" required>
-        <option *ngFor="let size of sizes">{{size}}</option>
+        <option *ngFor="let size of sizes" [ngValue]="size">{{size}}</option>
       </select>
       <label>Quantity: </label>
       <input id="quantity" type="number" name="quantity" min="1" [(ngModel)]="item.quantity" required (keyup)="calcTheCost()">
@@ -44,7 +45,7 @@
     </button>
   </fieldset>
   <p>
-    it has costed you : {{order.cost | currency:'EGP':true}}
+    it has costed you : {{order.cost | currency:'EGP':'symbol'}}
   </p>
 
   <button class="done-btn" type="submit" (click)="onSubmit()">Done</button>
