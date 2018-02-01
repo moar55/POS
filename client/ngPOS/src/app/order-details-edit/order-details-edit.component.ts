@@ -10,19 +10,21 @@ import { OrdersService } from '../orders.service';
 export class OrderDetailsEditComponent implements OnInit {
 
   constructor(private orderServ: OrdersService, private route: ActivatedRoute) { }
-  orderDetails: any;
+  order: any;
+  // orderDetails: any;
   orderID = this.route.snapshot.paramMap.get('id');
   ngOnInit() {
     this.getOrderDetails(this.orderID);
-    console.log('order details are nginit', this.orderDetails);
+    // console.log('order items are nginit', this.order.items);
   }
 
   getOrderDetails(orderID) {
     this.orderServ.getOrderDetails(orderID)
       .subscribe(res => {
         console.log('res is', res);
-        this.orderDetails = res[0];
-        console.log('order details are', this.orderDetails);
+        this.order = res;
+        // this.orderDetails = res.items;
+        console.log('order items are', this.order.items);
 
       },
       err => console.log(err),
