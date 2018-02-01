@@ -89,5 +89,3 @@ export class AddOrderComponent implements OnInit {
   }
 
 }
-
-

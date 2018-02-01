@@ -15,7 +15,7 @@
       <!-- <input type="text" name="manufacturer" [(ngModel)]="order.manufacturer"> -->
       <select [(ngModel)]="manufacturer" name="manfufacturer">
 
-        <option *ngFor="let manf of manufacturer" name="manufacturerID" [ngValue]="manf.id">{{manf.name}}</option>
+        <option *ngFor="let manf in manufacturer" name="manufacturerID" [ngValue]="manf.id">{{manf.name}}</option>
       </select>
 
     </div>
