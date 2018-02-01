@@ -3,6 +3,7 @@
 </h1>
 
 <form #addOrder="ngForm" action="">
+
   <fieldset>
     <div class="order-details">
       <legend>Order details:</legend>
@@ -10,30 +11,51 @@
       <input type="text">
       <label>Date: </label>
       <input type="datetime-local">
+      <label>Manufacturer: </label>
+      <!-- <input type="text" name="manufacturer" [(ngModel)]="order.manufacturer"> -->
+      <select [(ngModel)]="manufacturer" name="manfufacturer">
+
+        <option *ngFor="let manf of manufacturer" name="manufacturerID" [ngValue]="manf.id">{{manf.name}}</option>
+      </select>
+
     </div>
   </fieldset>
-  <fieldset ngModelGroup="item">
+  <fieldset>
     <legend>Items details</legend>
     <div *ngFor="let item of order.items; index as i ;trackBy: i;">
 
       <label>R. : </label>
-      <input type="text" [(ngModel)]="item.r" name="R">
-      <br> {{item |json}} item index {{i}}
+      <input type="text" [(ngModel)]="item.r" name="R" required>
+      <!-- <br> {{item |json}} item index {{i}} -->
 
       <label>Color: </label>
-      <input type="text" [(ngModel)]="item.color" name="color">
+      <input type="text" [(ngModel)]="item.color" name="color" required>
       <label>Size: </label>
-      <select type="text" [(ngModel)]="item.size" name="size">
+      <select type="text" [(ngModel)]="item.size" name="size" required>
         <option *ngFor="let size of sizes">{{size}}</option>
       </select>
       <label>Quantity: </label>
-      <input id="quantity" type="number" name="quantity" min="1" [(ngModel)]="item.quantity">
+      <input id="quantity" type="number" name="quantity" min="1" [(ngModel)]="item.quantity" required (keyup)="calcTheCost()">
       <label>Price: </label>
-      <input id="price" type="number" name="price" min="0" [(ngModel)]="item.price">
+      <input id="price" type="number" name="price" min="0" [(ngModel)]="item.price" required (keyup)="calcTheCost()">
     </div>
     <button class="add_items" (click)="addItem()">
       <span class="glyphicon glyphicon-plus"></span>
     </button>
   </fieldset>
+  <p>
+    it has costed you : {{order.cost | currency:'EGP':true}}
+  </p>
+
   <button class="done-btn" type="submit" (click)="onSubmit()">Done</button>
 </form>
+<div style="color:aliceblue; font-size: 1.5em">
+  <p *ngIf="order.items.length > 0 && addOrder.valid">
+    order contains
+    <span>{{order.items.length}}</span> things
+  </p>
+  <!-- <p>
+    it has costed you : {{order.cost | currency:'EGP':true}}
+  </p> -->
+
+</div>

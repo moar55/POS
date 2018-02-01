@@ -18,9 +18,14 @@ export class OrdersService {
     });
   }
   getManfs() {
-    return this.http.get(`${this.baseUrl}/manufacturers`);
+    return this.http.get(`${this.baseUrl}/manufacturers`, {
+      withCredentials: true,
+    });
   }
   getOrderDetails(id) {
     return this.http.get(`${this.baseUrl}/orders/${id}`);
+  }
+  addOrder(order) {
+    return this.http.post(`${this.baseUrl}/orders`, order);
   }
 }
