@@ -1,0 +1,38 @@
+<h2>
+  You are now Editing order with ID: {{orderDetails.id}}
+</h2>
+<h3>
+  It has costed you: {{orderDetails.cost | currency:'EGP'}}
+</h3>
+<h3>manf: {{orderDetails.manufacturer}}</h3>
+
+
+<div class="container">
+  <table class="table table-responsive table-striped">
+    <thead>
+      <tr>
+        <th>R</th>
+        <th>Color</th>
+        <th>Size</th>
+        <!-- <th>size</th> -->
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of orderDetails.items">
+        <td>
+          <input type="text" required [(ngModel)]="item.R" /> </td>
+        <td>
+          <input type="text" required [(ngModel)]="item.color" />
+        </td>
+        <td>
+          <input type="text" required [(ngModel)]="item.size" />
+        </td>
+        <td>
+          <input type="text" required [(ngModel)]="item.price" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <button (click)="doneEditing()">Done Editing</button> -->
+</div>

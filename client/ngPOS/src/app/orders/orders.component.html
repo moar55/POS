@@ -1,30 +1,30 @@
-<h1 class="title">Orders</h1>
-
+<h1 class="title">
+  Orders
+</h1>
 
 <div class="container">
   <table class="table table-responsive table-striped">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Manufacturer</th>
         <th>Date</th>
+        <th>Manufacturer
+        </th>
         <th>Cost</th>
         <th>edit</th>
         <th>delete</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let order of ordersList">
+        <td> {{order.id}} </td>
         <td>
-          <a id="" class="itemR" data-toggle="modal" data-target="#myModal">
-            100
-          </a>
+          {{order.created_at | date}}
         </td>
-        <td> NIKE </td>
-        <td> 2-11-2015 </td>
-        <td>300 </td>
+        <td>{{order.manufacturer}} </td>
+        <td> {{order.cost}} </td>
         <td>
-          <a class="btn btn-info">
+          <a class="btn btn-info" routerLink="/orders/{{order.id}}">
             <i class="glyphicon glyphicon-pencil"></i>
           </a>
         </td>
@@ -34,46 +34,5 @@
           </button>
         </td>
       </tr>
-      <tr>
-        <td>
-          <a id="" class="itemR" data-toggle="modal" data-target="#myModal">
-            100
-          </a>
-        </td>
-        <td> NIKE </td>
-        <td> 2-11-2015 </td>
-        <td>300 </td>
-        <td>
-          <a class="btn btn-info">
-            <i class="glyphicon glyphicon-pencil"></i>
-          </a>
-        </td>
-        <td>
-          <button class="btn btn-danger">
-            <i class="glyphicon glyphicon-trash"></i>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a id="" class="itemR" data-toggle="modal" data-target="#myModal">
-            100
-          </a>
-        </td>
-        <td> NIKE </td>
-        <td> 2-11-2015 </td>
-        <td>300 </td>
-        <td>
-          <a class="btn btn-info">
-            <i class="glyphicon glyphicon-pencil"></i>
-          </a>
-        </td>
-        <td>
-          <button class="btn btn-danger">
-            <i class="glyphicon glyphicon-trash"></i>
-          </button>
-        </td>
-      </tr>
-
     </tbody>
   </table>

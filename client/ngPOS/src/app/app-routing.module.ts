@@ -1,3 +1,4 @@
+import { OrderDetailsEditComponent } from './order-details-edit/order-details-edit.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { EditStockItemComponent } from './edit-stock-item/edit-stock-item.component';
 import { NgModule } from '@angular/core';
@@ -32,6 +33,9 @@ const routes: Routes = [
   },
   {
     path: 'stock/:R', component: EditStockItemComponent,
+  },
+  {
+    path: 'orders/:id', component: OrderDetailsEditComponent,
   }
 ];
 

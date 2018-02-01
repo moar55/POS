@@ -1,3 +1,4 @@
+import { OrdersService } from './orders.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -17,6 +18,7 @@ import { StockService } from './stock.service';
 import { OrdersComponent } from './orders/orders.component';
 import { EditStockItemComponent } from './edit-stock-item/edit-stock-item.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { OrderDetailsEditComponent } from './order-details-edit/order-details-edit.component';
 
 
 
@@ -30,20 +32,23 @@ import { HomePageComponent } from './home-page/home-page.component';
     NavbarComponent,
     OrdersComponent,
     EditStockItemComponent,
-    HomePageComponent
+    HomePageComponent,
+    OrderDetailsEditComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+
   ],
   providers: [
     LoginService,
     StockService,
     AuthGuard,
-    LoginGuard
+    LoginGuard,
+    OrdersService
   ],
   bootstrap: [AppComponent]
 })

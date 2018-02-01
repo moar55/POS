@@ -1,12 +1,17 @@
-nav a {
-    margin:0 7px;
-    padding: 2px 5px;
-    font-size: 2em;
-    margin: 0 7px;
-    color: #fdf20d;
-    text-transform: capitalize;
-
+nav {
+  width: 100%;
+  display: flex;
 }
+
+nav a {
+  margin: 0 7px;
+  padding: 2px 5px;
+  font-size: 2em;
+  margin: 0 7px;
+  color: #fdf20d;
+  text-transform: capitalize;
+}
+
 .active {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
