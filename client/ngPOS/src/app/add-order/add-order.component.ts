@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-order.component.css']
 })
 export class AddOrderComponent implements OnInit {
-  manufacturer: any;
+  manufacturers: any;
   item = {
     r: null,
     color: null,
@@ -24,7 +24,6 @@ export class AddOrderComponent implements OnInit {
   // items: Item[];
   sizes: number[];
   constructor(private orderServ: OrdersService) {
-    this.getManfList();
     // tslint:disable-next-line:forin
     for (const i in [1, 2, 3]) {
       this.addItem();
@@ -34,18 +33,17 @@ export class AddOrderComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getManfList();
   }
   getManfList() {
     this.orderServ.getManfs()
       .subscribe(
       res => {
-        console.log(`res from getManfList is ${res}`);
-        this.manufacturer = res['data'];
+        this.manufacturers = res['data'];
         // this.manufacturer.name = res['name'];
         // this.manufacturer.id = res['id'];
-        console.log(`manf list from getManfList is ${this.manufacturer}`);
-
+        console.log(`manf list from getManfList is ${this.manufacturers}`);
+        // ^ da bydy [object Object],[object Object],[object Object],[object Object]
       },
       err => console.log(err)
       );
@@ -66,14 +64,6 @@ export class AddOrderComponent implements OnInit {
   wow() {
     console.log(this.order['items']);
   }
-  onSubmit() {
-    this.orderServ.addOrder(this.order)
-      .subscribe(
-      res => console.log(res),
-      err => console.log(err)
-      );
-    // console.log(this.order);
-  }
   calcTheCost() {
     let totalCost = 0;
     let itemCost = 0;
@@ -86,6 +76,28 @@ export class AddOrderComponent implements OnInit {
 
     });
     // return totalCost;
+  }
+  onSubmit() {
+    console.log(this.order);
+    // check if order.items contain empty or null objects
+    this.order.items.forEach(item => {
+
+      for (let r in this.order.items) {
+        if (item.hasOwnProperty(r)) {
+          // return false;
+          console.log('kolo tmam ya m3lm');
+
+        } else {
+          // pop those empty objects from the array
+          this.order.items.splice(this.order.items.indexOf(item), 1);
+        }
+      }
+    });
+    this.orderServ.addOrder(this.order)
+      .subscribe(
+      res => console.log(res),
+      err => console.log(err)
+      );
   }
 
 }
