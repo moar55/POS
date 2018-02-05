@@ -4,10 +4,6 @@ const Model = use('Model')
 
 class Order extends Model {
 
-  static boot () {
-    super.boot()
-    this.addHook('afterCreate', 'OrderHook.updateStock')
-  }
 
   static get table() {
     return 'orders'
@@ -15,6 +11,10 @@ class Order extends Model {
 
   manufacturer () {
     return this.belongsTo('App/Models/Manufacturer')
+  }
+
+  items() {
+    return this.hasMany('App/Models/StockItem')
   }
 
 }

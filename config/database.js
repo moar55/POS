@@ -54,7 +54,8 @@ module.exports = {
       user: Env.get('DB_USER', JAWSDB_URL.username),
       password: Env.get('DB_PASSWORD', JAWSDB_URL.password),
       database: Env.get('DB_DATABASE', JAWSDB_URL.pathname.substr(1))
-    }
+    },
+    // debug: true
   },
 
   /*

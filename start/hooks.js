@@ -5,7 +5,8 @@ hooks.after.providersBooted(() => {
   const Exception = use('Exception')
 
   Exception.handle('InvalidSessionException', async (error, { response, session }) => {
-    return response.status(401).json({status:'error', message: 'you need to be logged in!'})
+    console.log('noooo');
+    return response.status(500).json({status:'error', message: 'you need to be logged in!'})
   })
 
   const shoesizeFn =  (data, field, message, args, get) => {

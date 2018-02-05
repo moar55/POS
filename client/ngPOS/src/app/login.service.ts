@@ -15,7 +15,9 @@ export class LoginService {
 
   baseUrl = 'https://bellino-pos.herokuapp.com/api';
   login(loginData) {
-    return this.http.post(`${this.baseUrl}/login`, loginData);
+    return this.http.post(`${this.baseUrl}/login`, loginData, {
+      withCredentials: true,
+    });
     // this.headers.append('Authorization', this.UserDataStored.token_type + ' ' + this.UserDataStored['access_token']);
   }
 

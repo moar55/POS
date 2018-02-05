@@ -6,7 +6,7 @@ export class StockService {
 
   headers;
   constructor(private http: HttpClient) {
-    this.headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Credentials': 'true' });
+    this.headers = new Headers({ 'Content-Type': 'application/json'});
   }
 
   // TODO: See if possible to put baseUrl and headers setup in a file to be reused everywhere

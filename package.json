@@ -28,6 +28,7 @@
     "@adonisjs/shield": "^1.0.4",
     "@adonisjs/validator": "^4.0.8",
     "adonis-swagger-jsdoc": "0.0.1",
+    "lint": "^1.1.2",
     "mysql": "^2.15.0"
   },
   "engines": {

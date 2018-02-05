@@ -1,15 +1,11 @@
 'use strict'
 
-const R = use('App/Models/R')
+const Product = use('App/Models/Product')
 
 class RController {
 
   async query({request, response}) {
-    // try {
-    //   await auth.check()
-    // } catch(err) {
-    //   return await response.status(401).json({status: 'error', message: 'Unauthorized'})
-    // }
+
     let param = request.get().q
 
     if (!request.get().hasOwnProperty('q')) {
@@ -17,7 +13,7 @@ class RController {
     }
 
     try {
-        return await R
+        return await Product
         .query()
         .select('R')
         .where('R','LIKE',`${param}%`)
@@ -29,7 +25,7 @@ class RController {
 async edit({ request, response, params }) {
     // /* HACK: */ const fields = JSON.parse(JSON.stringify(request.all().update).replace('manufacturer', 'manufacturer_id'))
     try {
-      const r = await R
+      const r = await Product
         .query()
         .where('R', params.R)
         .update(request.all().update)

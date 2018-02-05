@@ -1,7 +1,7 @@
 'use strict'
 
 const Model = use('Model')
-const R = use('App/Models/R')
+const Product = use('App/Models/Product')
 
 class StockItem extends Model {
 
@@ -9,8 +9,8 @@ class StockItem extends Model {
     return 'stock'
   }
 
-  r () {
-    return this.belongsTo('App/Models/R','R','id')
+  product () {
+    return this.belongsTo('App/Models/Product','R','id')
   }
 
   order () {
@@ -20,7 +20,7 @@ class StockItem extends Model {
   static async fetchGroupBy(param) {
     let r
     try {
-     r = await R.findByOrFail('R', param)
+     r = await Product.findByOrFail('R', param)
     }
     catch(e) {
       if (e.constructor.name == "ModelNotFoundException")
@@ -33,10 +33,10 @@ class StockItem extends Model {
       const groups = await this
         .query()
         .select( 'color', 'size')
-        .innerJoin('rtkls', 'stock.R', 'rtkls.id')
-        .innerJoin('manufacturers', 'rtkls.manufacturer_id', 'manufacturers.id')
-        .groupBy('rtkls.R','color', 'size')
-        .having('rtkls.R','=',param)
+        .innerJoin('products', 'stock.R', 'products.id')
+        .innerJoin('manufacturers', 'products.manufacturer_id', 'manufacturers.id')
+        .groupBy('products.R','color', 'size')
+        .having('products.R','=',param)
         .count('* as quantity')
 
       let resp = {R: param, price: price, manufacturer: manufacturer, groups: groups}
@@ -52,9 +52,9 @@ class StockItem extends Model {
   static async fetch() {
     return await this
       .query()
-      .select('rtkls.R','price', 'manufacturers.name as manufacturer')
-      .innerJoin('rtkls', 'stock.R', 'rtkls.id')
-      .innerJoin('manufacturers', 'rtkls.manufacturer_id', 'manufacturers.id')
+      .select('products.R','price', 'manufacturers.name as manufacturer')
+      .innerJoin('products', 'stock.R', 'products.id')
+      .innerJoin('manufacturers', 'products.manufacturer_id', 'manufacturers.id')
       .groupBy('R','price','manufacturers.name')
       .count('* as quantity')
   }

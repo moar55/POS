@@ -1,4 +1,4 @@
-'use strict'
+  'use strict'
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +15,8 @@
 
 const Route = use('Route')
 const Helpers = use('Helpers')
+const StockItem = use('App/Models/StockItem')
+const Order = use('App/Models/Order')
 
 // Route.get('/*', ({ request, response}) => {
 //   console.log(Helpers.resourcesPath(`../client/ngPOS/dist/index.html`))
@@ -60,7 +62,27 @@ Route.get('/api', ({ request, response}) => {
 Route.post('api/login', 'UserController.login')
 
 
-Route.get('api/manufacturers', 'ManufacturerController.fetch')
+Route.get('api/manufacturers', 'ManufacturerController.fetch').middleware('auth')
+
+Route.get('/test', async ({response}) => {
+  const items = await StockItem.
+    query()
+    .where('order_id', '=', 76)
+    .fetch()//findBy('order_id', 76)
+  const order = await Order.find(76)
+  order.items = JSON.stringify(items)
+  await order.save()
+  response.send('hey')
+})
+
+Route.get('/test2', async ({response}) => {
+    Order
+      .query()
+      .update({37: "nop"})
+      .where('id',37)
+  // response.send(order)
+})
+
 
 
 /**
@@ -82,26 +104,26 @@ Route.post('api/logout', ({auth, response}) => {
  * @type get
  * @url /api/stock
  */
-Route.get('api/stock', 'StockController.fetch')
-Route.put('api/stock', 'StockController.update')
+Route.get('api/stock', 'StockController.fetch').middleware('auth')
+Route.put('api/stock', 'StockController.update').middleware('auth')
   // .middleware('auth')
 
 // Route.put('api/stock/', 'StockController.edit')
 
 
-Route.get('api/stock/:R', 'StockController.fetchGroupBy')
+Route.get('api/stock/:R', 'StockController.fetchGroupBy').middleware('auth')
   // .middleware('auth')
 
 
-Route.get('api/r', 'RController.query')
+Route.get('api/r', 'RController.query').middleware('auth')
 
-Route.put('api/r/:R', 'RController.edit')
+Route.put('api/r/:R', 'RController.edit').middleware('auth')
   // .middleware('auth')
 
 
 
-Route.get('api/orders', 'OrderController.fetch')
-Route.get('api/orders/:id', 'OrderController.fetchByID')
+Route.get('api/orders', 'OrderController.fetch').middleware('auth')
+Route.get('api/orders/:id', 'OrderController.fetchByID').middleware('auth')
 
 /**
  * Add a new order
@@ -112,7 +134,7 @@ Route.get('api/orders/:id', 'OrderController.fetchByID')
  * @param {string} password
  * @url /api/stock
  */
-Route.post('api/orders', 'OrderController.addOrder')
+Route.post('api/orders', 'OrderController.addOrder').middleware('auth')
 // .middleware('auth')
 
-Route.put('api/orders/:id', 'OrderController.update')
+Route.put('api/orders/:id', 'OrderController.update').middleware('auth')

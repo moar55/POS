@@ -41,7 +41,7 @@ export class AddOrderComponent implements OnInit {
       .subscribe(
       res => {
         console.log(`res from getManfList is ${res}`);
-        this.manufacturer = res;
+        this.manufacturer = res['data'];
         // this.manufacturer.name = res['name'];
         // this.manufacturer.id = res['id'];
         console.log(`manf list from getManfList is ${this.manufacturer}`);

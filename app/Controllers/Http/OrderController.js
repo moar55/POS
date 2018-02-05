@@ -23,15 +23,13 @@ class OrderController {
   }
 
   async fetchByID({ response, request, params}) {
-    let orders =
-    await Order
+    const order = await Order
       .query()
       .with('manufacturer')
+      .with('items')
       .where('orders.id', '=', params.id)
       .fetch()
-      orders.rows[0].$attributes.items = JSON.parse(orders.rows[0].$attributes.items);
-      orders.rows[0].$attributes.manufacturer_id = undefined
-      return orders.rows[0]
+      response.json({status: "success", data: order})
   }
 
   async addOrder({ request, response, auth}) {
@@ -65,15 +63,17 @@ class OrderController {
        return response.status(400).json(notValid)
 
     const order = new Order()
-    order.manufacturer_id = manufacturer_id, order.cost = cost, order.items = JSON.stringify(items)
+    order.manufacturer_id = manufacturer_id, order.cost = cost
     await order.save()
 
     return  response.json({status: "success"})
   }
 
-  async update({ request, response }) {
+  async update({ request, response ,params }) {
     let params =  request.get()
     const updateObject = request.post()
+    const order = Order.find(params.id)
+
   }
 }
 

@@ -3,10 +3,7 @@
 const Model = use('Model')
 const Database = use('Database')
 
-class R extends Model {
-  static get table() {
-    return 'rtkls'
-  }
+class Product extends Model {
 
   manufacturer() {
     return this.belongsTo('App/Models/Manufacturer')
@@ -14,4 +11,4 @@ class R extends Model {
 
 }
 
-module.exports = R
+module.exports = Product

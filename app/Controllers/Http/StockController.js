@@ -1,7 +1,7 @@
 'use strict'
 
 const StockItem = use('App/Models/StockItem')
-const R = use('App/Models/R')
+const Product = use('App/Models/Product')
 const Order = use('App/Models/Order')
 const Manufacturer = use('App/Models/Manufacturer')
 const Database = use('Database')
@@ -9,11 +9,7 @@ const Database = use('Database')
 class StockController {
 
   async fetch({response, view, auth}) {
-    // try {
-    //   await auth.check()
-    // } catch(err) {
-    //   return await response.status(401).json({status: 'error', message: 'Unauthorized'})
-    // }
+
     let items;
     try {
       items = await StockItem.fetch()
@@ -25,11 +21,7 @@ class StockController {
 
 
   async fetchGroupBy({ request, response, params, auth}) {
-    // try {
-    //   await auth.check()
-    // } catch(err) {
-    //   return await response.status(401).json({status: 'error', message: 'Unauthorized'})
-    // }
+
        try {
          const query =  await StockItem.fetchGroupBy(params.R)
          return await {status: 'success', data: query}
@@ -40,11 +32,9 @@ class StockController {
           return response.status(500).json({status: 'error', message: e})
        }
   }
-  // {x:}
 
   static jsonToSQL(json) {
     let strJSON = JSON.stringify(json)
-    // console.log(strJSON.replace(/({|})/g,'').split(',').map((item) => item.split(':'))
     let query = strJSON.replace(/({|})/g,'').split(',').map((item) => item.split(':').map((item, index) => (index == 0)?item.replace(/"/g, '') + '=': item.replace(/"/g,"'")).join('')).join(' and ')
     return query
   }
@@ -52,12 +42,12 @@ class StockController {
   async update({ request, response }) {
     let params =  request.get()
     const updateObject = request.post()
-    const rParams= await R.findBy('R', params.R)
-    const rUpdate = await R.findOrCreate(
+    const productParams= await Product.findBy('R', params.R)
+    const productUpdate = await Product.findOrCreate(
       {R: updateObject.R},
-      {R: updateObject.R, price: updateObject.price, manufacturer_id: updateObject.manufacturer_id, size: updateObject.size}
+      {R: updateObject.R, price: updateObject.price, manufacturer_id: updateObject.manufacturer_id}
     )
-    params.R = rParams.id;
+    params.R = productParams.id;
     updateObject.R = rUpdate.id;
     delete params.price;
     delete params.manufacturer_id;
@@ -72,7 +62,7 @@ class StockController {
       Object.keys(updateObjectClone).forEach((key) => { // remove manufacturer_id and price from updateObject and keep them only in case of the clone (to update the R attrs)
         (key != 'manufacturer_id' && key != 'price')?delete updateObjectClone[key]:delete updateObject[key]
       })
-    const r = await R
+    const product = await Product
         .query()
         .where({id: updateObject.R})
         .update(updateObjectClone)
