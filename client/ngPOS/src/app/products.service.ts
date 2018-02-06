@@ -22,6 +22,12 @@ export class ProductsService {
         withCredentials: true
       });
   }
+  editProduct(id, updatedObj) {
+    return this.http.put(`${this.baseUrl}/products/${id}`, updatedObj, {
+      withCredentials: true,
+    });
+
+  }
 
 
 }

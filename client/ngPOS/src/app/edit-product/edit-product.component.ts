@@ -31,5 +31,12 @@ export class EditProductComponent implements OnInit {
       err => console.log(err),
     );
   }
+  editProduct() {
+    this.productServ.editProduct(this.productID, this.products)
+      .subscribe(
+      res => console.log(res),
+      err => console.log(err)
+      );
+  }
 
 }
