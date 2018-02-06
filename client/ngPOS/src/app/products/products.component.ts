@@ -23,7 +23,6 @@ export class ProductsComponent implements OnInit {
         console.log('res is', res);
         this.productsList = res['data'];
         console.log('product list ', this.productsList);
-
       },
       err => console.log(err)
 

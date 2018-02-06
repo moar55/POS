@@ -1,3 +1,4 @@
+import { EditProductComponent } from './edit-product/edit-product.component';
 import { ManufacturerComponent } from './manufacturer/manufacturer.component';
 import { ProductsComponent } from './products/products.component';
 import { OrderDetailsEditComponent } from './order-details-edit/order-details-edit.component';
@@ -44,7 +45,10 @@ const routes: Routes = [
   },
   {
     path: 'manufacturers', component: ManufacturerComponent,
-  }
+  },
+  {
+    path: 'products/:id', component: EditProductComponent,
+  },
 ];
 
 @NgModule({

@@ -20,13 +20,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of productsList">
+      <tr *ngFor="let product of productsList; index as i">
         <td> {{product.id}} </td>
         <td> {{product.R}} </td>
         <td>{{product.price}} </td>
         <td> {{product.manufacturer.name}} </td>
         <td>
-          <a class="btn btn-info">
+          <a class="btn btn-info" routerLink="/products/{{product.id}}">
             <!-- (click)="editStockItem(stockItem)" routerLink="/stock/{{stockItem.R}}" -->
             <i class="glyphicon glyphicon-pencil"></i>
           </a>

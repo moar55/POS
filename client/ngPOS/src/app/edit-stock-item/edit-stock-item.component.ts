@@ -33,7 +33,7 @@ export class EditStockItemComponent implements OnInit {
       );
   }
   doneEditing() {
-
+    console.log('new obj after edit is', this.stockItem);
   }
 
 }

@@ -23,6 +23,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { OrderDetailsEditComponent } from './order-details-edit/order-details-edit.component';
 import { ProductsComponent } from './products/products.component';
 import { ManufacturerComponent } from './manufacturer/manufacturer.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 
 
@@ -39,7 +40,8 @@ import { ManufacturerComponent } from './manufacturer/manufacturer.component';
     HomePageComponent,
     OrderDetailsEditComponent,
     ProductsComponent,
-    ManufacturerComponent
+    ManufacturerComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
