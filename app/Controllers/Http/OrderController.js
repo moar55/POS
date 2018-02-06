@@ -4,6 +4,8 @@ const Order = use('App/Models/Order')
 const Manufacturer = use('App/Models/Manufacturer')
 const {validateItems} = use('App/Helpers')
 const Validator = use('Validator')
+const Product = use('App/Models/Product')
+const StockItem = use('App/Models/StockItem')
 
 class OrderController {
 
@@ -39,10 +41,10 @@ class OrderController {
     const rules = {
       manufacturer_id: 'required|integer',
       cost: 'required',
-      items: 'required|array'
+      items: 'required|array',
     }
 
-    const validation = await Validator.validate(request.all(), rules)
+    const validation = await Validator.validate(request.post(), rules)
 
     if (validation.fails()){
       return response.status(400).json({status: "error", type: "validation", validation_error: validation.messages()})
@@ -63,12 +65,13 @@ class OrderController {
     order.manufacturer_id = manufacturer_id, order.cost = cost
     await order.save()
 
+
     for (let item of items) {
       for (var i = 0; i < item.quantity; i++) {
-        const product = await Product.findOrCreate({R: item.R}, {R: item.R, manufacturer_id: modelInstance.manufacturer_id, price: item.price})  // add R. if it doesn't exist
+        const product = await Product.findOrCreate({R: item.R}, {R: item.R, manufacturer_id: order.manufacturer_id, price: item.price})  // add R. if it doesn't exist
         const sizes = item.sizes
-        for (size of sizes) {
-          const stockItem = await StockItem.create({color: item.color, R: product.id, size: size, order_id: modelInstance.id})
+        for (let size of sizes) {
+          const stockItem = await StockItem.create({color: item.color, R: product.id, size: size, order_id: order.id})
         }
       }
     }
