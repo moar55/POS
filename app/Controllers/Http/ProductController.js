@@ -12,7 +12,7 @@ class ProductController {
 
   async fetchByID({request, response, params}) {
     const product = await Product.query().where('R',params.R).with('manufacturer').fetch()
-    return response.json({data: product[0]}) // TODO: vaildation! and add status
+    return response.json({data: product.rows[0]}) // TODO: vaildation! and add status
   }
 
   async query({request, response}) {

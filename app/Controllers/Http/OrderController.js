@@ -78,10 +78,38 @@ class OrderController {
     return  response.json({status: "success"})
   }
 
-  async update({ request, response ,params }) {
-    let params =  request.get()
-    const updateObject = request.post()
-    const order = Order.find(params.id)
+  async update({ request, response, params }) {
+    await Order
+      .query()
+      .where(params.id)
+      .update(request.post().order)
+    await StockItem
+        .query()
+        .where('order_id', '=', params.id)
+        .delete()
+
+    const requestOrderObject = request.post().order
+    const manufacturer_id = requestObject.manufacturer_id;
+    const cost = requestObject.cost;
+    const items = request.post().items
+
+    let notValid = await validateItems(items, response)
+
+    if(notValid)
+       return response.status(400).json(notValid)
+
+    for (let item of items) {
+      for (var i = 0; i < item.quantity; i++) {
+        const product = await Product.findOrCreate({R: item.R}, {R: item.R, manufacturer_id: order.manufacturer_id, price: item.price})  // add R. if it doesn't exist
+        const sizes = item.sizes
+        for (let size of sizes) {
+          const stockItem = await StockItem.create({color: item.color, R: product.id, size: size, order_id: order.id})
+        }
+      }
+    }
+    return  response.json({status: "success"})
+
+
   }
 
   async delete ({request, response, params}) {
