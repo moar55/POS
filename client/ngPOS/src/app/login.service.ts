@@ -9,11 +9,12 @@ export class LoginService {
 
   headers;
   constructor(public http: HttpClient, private router: Router) {
-    this.headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Credentials':'true'})
+    this.headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Credentials': 'true' })
   }
 
 
-  baseUrl = 'https://bellino-pos.herokuapp.com/api';
+  // baseUrl = 'https://bellino-pos.herokuapp.com/api';
+  baseUrl = 'http://localhost:3333/api';
   login(loginData) {
     return this.http.post(`${this.baseUrl}/login`, loginData, {
       withCredentials: true,
