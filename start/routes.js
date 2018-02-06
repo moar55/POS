@@ -63,6 +63,7 @@ Route.post('api/login', 'UserController.login')
 
 
 Route.get('api/manufacturers', 'ManufacturerController.fetch').middleware('auth')
+Route.post('api/manufacturers', 'ManufacturerController.add').middleware('auth')
 
 Route.get('/test', async ({response}) => {
   const items = await StockItem.
