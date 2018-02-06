@@ -4,6 +4,11 @@ const Product = use('App/Models/Product')
 
 class RController {
 
+  async fetch({request, response}) {
+    const products = await Product.query().with('manufacturer').fetch()
+    return response.json({status: "success", data: products})
+  }
+
   async query({request, response}) {
 
     let param = request.get().q
@@ -25,12 +30,12 @@ class RController {
 async edit({ request, response, params }) {
     // /* HACK: */ const fields = JSON.parse(JSON.stringify(request.all().update).replace('manufacturer', 'manufacturer_id'))
     try {
-      const r = await Product
+      const product = await Product
         .query()
         .where('R', params.R)
         .update(request.all().update)
-        console.log(r);
-        if(r == 0) throw 'R. not found'
+        console.log(product);
+        if(product == 0) throw 'R. not found'
       return response.json({success: true})
     } catch (e) {
         if(e == 'R. not found')
