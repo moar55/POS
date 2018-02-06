@@ -85,7 +85,6 @@ Route.get('/test2', async ({response}) => {
 })
 
 
-
 /**
  * User Logout
  *
@@ -115,7 +114,9 @@ Route.get('api/stock/:R', 'StockController.fetchGroupBy').middleware('auth')
 
 Route.get('api/products', 'ProductController.query').middleware('auth')
 Route.get('api/products/all', 'ProductController.fetch').middleware('auth')
+Route.get('api/products/:R', 'ProductController.fetchByID').middleware('auth')
 Route.put('api/products/:R', 'ProductController.edit').middleware('auth')
+Route.delete('api/products/:R', 'ProductController.delete').middleware('auth')
 
 Route.get('api/orders', 'OrderController.fetch').middleware('auth')
 Route.get('api/orders/:id', 'OrderController.fetchByID').middleware('auth')
@@ -130,5 +131,4 @@ Route.get('api/orders/:id', 'OrderController.fetchByID').middleware('auth')
  * @url /api/stock
  */
 Route.post('api/orders', 'OrderController.addOrder').middleware('auth')
-
 Route.put('api/orders/:id', 'OrderController.update').middleware('auth')
