@@ -1,3 +1,4 @@
+import { ProductsService } from './products.service';
 import { ManufacturerService } from './manufacturer.service';
 import { OrdersService } from './orders.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -54,7 +55,8 @@ import { ManufacturerComponent } from './manufacturer/manufacturer.component';
     AuthGuard,
     LoginGuard,
     OrdersService,
-    ManufacturerService
+    ManufacturerService,
+    ProductsService
   ],
   bootstrap: [AppComponent]
 })

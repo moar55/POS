@@ -1,3 +1,42 @@
-<p>
-  products works!
-</p>
+<h1 class="title">
+  a7la Product list
+</h1>
+<br>
+<small>brought to you by :
+  <strong>MushroomSoft</strong>
+</small>
+
+<div class="container">
+  <table class="table table-responsive table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>R.</th>
+
+        <th>Price</th>
+        <th>Manufacturer</th>
+        <th>edit</th>
+        <th>delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productsList">
+        <td> {{product.id}} </td>
+        <td> {{product.R}} </td>
+        <td>{{product.price}} </td>
+        <td> {{product.manufacturer.name}} </td>
+        <td>
+          <a class="btn btn-info">
+            <!-- (click)="editStockItem(stockItem)" routerLink="/stock/{{stockItem.R}}" -->
+            <i class="glyphicon glyphicon-pencil"></i>
+          </a>
+        </td>
+        <td>
+          <button class="btn btn-danger">
+            <!-- make delete btn here -->
+            <i class="glyphicon glyphicon-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

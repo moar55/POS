@@ -11,7 +11,9 @@ app-add-order,
 app-navbar,
 app-orders,
 app-edit-stock-item,
-app-order-details-edit {
+app-order-details-edit,
+app-products,
+app-manufacturer {
   display: flex;
   flex-direction: column;
   justify-content: center;

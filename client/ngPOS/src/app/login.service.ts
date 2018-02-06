@@ -13,10 +13,7 @@ export class LoginService {
   }
 
 
-<<<<<<< HEAD
   // baseUrl = 'https://bellino-pos.herokuapp.com/api';
-=======
->>>>>>> 35136bab473a40c44a4f3122dcfe3a83cb2f9267
   baseUrl = 'http://localhost:3333/api';
   login(loginData) {
     return this.http.post(`${this.baseUrl}/login`, loginData, {
