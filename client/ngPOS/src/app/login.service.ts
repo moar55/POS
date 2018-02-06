@@ -13,7 +13,7 @@ export class LoginService {
   }
 
 
-  baseUrl = 'https://bellino-pos.herokuapp.com/api';
+  baseUrl = 'http://localhost:3333/api';
   login(loginData) {
     return this.http.post(`${this.baseUrl}/login`, loginData, {
       withCredentials: true,

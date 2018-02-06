@@ -115,9 +115,10 @@ Route.get('api/stock/:R', 'StockController.fetchGroupBy').middleware('auth')
   // .middleware('auth')
 
 
-Route.get('api/r', 'RController.query').middleware('auth')
+Route.get('api/products', 'ProductController.query').middleware('auth')
+Route.get('api/products/all', 'ProductController.fetch').middleware('auth')
 
-Route.put('api/r/:R', 'RController.edit').middleware('auth')
+Route.put('api/r/:R', 'ProductController.edit').middleware('auth')
   // .middleware('auth')
 
 

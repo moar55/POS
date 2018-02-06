@@ -33,11 +33,7 @@ class OrderController {
   }
 
   async addOrder({ request, response, auth}) {
-    // try {
-    //   await auth.check()
-    // } catch(err) {
-    //   return await response.status(401).json({status: 'error', message: 'Unauthorized'})
-    // }
+
     const requestObject = request.all()
 
     const rules = {
