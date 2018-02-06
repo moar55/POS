@@ -47,7 +47,7 @@ const routes: Routes = [
     path: 'manufacturers', component: ManufacturerComponent,
   },
   {
-    path: 'products/:id', component: EditProductComponent,
+    path: 'products/:R', component: EditProductComponent,
   },
 ];
 

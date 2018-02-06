@@ -19,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of products; index as i">
+      <tr>
         <td>
           <input type="text" [(ngModel)]="product.id">
         </td>
@@ -33,5 +33,5 @@
         </td>
       </tr>
     </tbody>
-    <button>Done Editing ya m3lm</button>
+    <button (click)="editProduct()">Done Editing ya m3lm</button>
   </table>

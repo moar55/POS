@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-product.component.css']
 })
 export class EditProductComponent implements OnInit {
-  productID: any;
-  products: any;
+  productR: any;
+  product: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -17,22 +17,22 @@ export class EditProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.productID = this.route.snapshot.paramMap.get('id');
-    console.log(this.productID);
+    this.productR = this.route.snapshot.paramMap.get('R');
+    console.log(this.productR);
     this.fetchProduct();
   }
   fetchProduct() {
-    this.productServ.fetchProduct(this.productID)
+    this.productServ.fetchProduct(this.productR)
       .subscribe(
       (res: Response) => {
         console.log(res);
-        this.products = res['data'];
+        this.product = res['data'];
       },
       err => console.log(err),
     );
   }
   editProduct() {
-    this.productServ.editProduct(this.productID, this.products)
+    this.productServ.editProduct(this.productR, this.product)
       .subscribe(
       res => console.log(res),
       err => console.log(err)

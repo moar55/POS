@@ -16,14 +16,14 @@ export class ProductsService {
       withCredentials: true,
     });
   }
-  fetchProduct(id) {
-    return this.http.get(`${this.baseUrl}/products/${id}`,
+  fetchProduct(R) {
+    return this.http.get(`${this.baseUrl}/products/${R}`,
       {
         withCredentials: true
       });
   }
-  editProduct(id, updatedObj) {
-    return this.http.put(`${this.baseUrl}/products/${id}`, updatedObj, {
+  editProduct(R, updatedObj) {
+    return this.http.put(`${this.baseUrl}/products/${R}`, updatedObj, {
       withCredentials: true,
     });
 
