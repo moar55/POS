@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditProductComponent implements OnInit {
   productID: any;
+  products: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,6 +19,17 @@ export class EditProductComponent implements OnInit {
   ngOnInit() {
     this.productID = this.route.snapshot.paramMap.get('id');
     console.log(this.productID);
+    this.fetchProduct();
+  }
+  fetchProduct() {
+    this.productServ.fetchProduct(this.productID)
+      .subscribe(
+      (res: Response) => {
+        console.log(res);
+        this.products = res['data'];
+      },
+      err => console.log(err),
+    );
   }
 
 }

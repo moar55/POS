@@ -1,3 +1,37 @@
-<p>
-  edit-product works!
-</p>
+<h1 class="title">
+  a7la Product list
+</h1>
+<br>
+<small>brought to you by :
+  <strong>MushroomSoft</strong>
+</small>
+
+<div class="container">
+  <table class="table table-responsive table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>R.</th>
+
+        <th>Price</th>
+        <th>Manufacturer</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; index as i">
+        <td>
+          <input type="text" [(ngModel)]="product.id">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="product.R"> </td>
+        <td>
+          <input type="text" [(ngModel)]="product.price">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="product.manufacturer.name">
+        </td>
+      </tr>
+    </tbody>
+    <button>Done Editing ya m3lm</button>
+  </table>

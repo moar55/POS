@@ -16,6 +16,12 @@ export class ProductsService {
       withCredentials: true,
     });
   }
+  fetchProduct(id) {
+    return this.http.get(`${this.baseUrl}/products/${id}`,
+      {
+        withCredentials: true
+      });
+  }
 
 
 }

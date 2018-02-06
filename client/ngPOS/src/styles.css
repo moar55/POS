@@ -13,7 +13,8 @@ app-orders,
 app-edit-stock-item,
 app-order-details-edit,
 app-products,
-app-manufacturer {
+app-manufacturer,
+app-edit-product {
   display: flex;
   flex-direction: column;
   justify-content: center;
