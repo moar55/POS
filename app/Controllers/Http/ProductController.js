@@ -1,8 +1,9 @@
 'use strict'
 
 const Product = use('App/Models/Product')
+const Validator = use('Validator')
 
-class RController {
+class ProductController {
 
   async fetch({request, response}) {
     const products = await Product.query().with('manufacturer').fetch()
@@ -34,15 +35,36 @@ async edit({ request, response, params }) {
         .query()
         .where('R', params.R)
         .update(request.all().update)
-        console.log(product);
         if(product == 0) throw 'R. not found'
       return response.json({success: true})
     } catch (e) {
         if(e == 'R. not found')
-          return response.status(404).json({success: false, message: e})
-        return response.status(500).json({success: false, message: 'server error'})
+          return response.status(404).json({status: 'error', message: e})
+        return response.status(500).json({status: 'error', message: 'server error'})
+    }
+  }
+
+async delete({request, response, params}) {
+  const rules = {
+    R: 'required|string'
+  }
+
+  const validation = await Validator.validate(params, rules)
+
+  if (validation.fails()){
+    return response.status(400).json({status: "error", message: "R required"})
+  }
+  try {
+    const product = await Product.findByOrFail('R', params.R)
+    await product.delete()
+    return response.json({status: "success"})
+
+  } catch (e) {
+    if(e.name =='ModelNotFoundException')
+      return response.json({status: "error", message: "item not found"})
+    return response.status(500).json({status: 'error', message: 'server error'})
     }
   }
 }
 
-module.exports = RController
+module.exports = ProductController

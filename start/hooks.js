@@ -5,8 +5,11 @@ hooks.after.providersBooted(() => {
   const Exception = use('Exception')
 
   Exception.handle('InvalidSessionException', async (error, { response, session }) => {
-    console.log('noooo');
     return response.status(500).json({status:'error', message: 'you need to be logged in!'})
+  })
+
+  Exception.handle('ModelNotFoundException', async (error, { response, session }) => {
+    return response.status(404).json({status:'error', message: 'item not found'})
   })
 
   const shoesizeFn =  (data, field, message, args, get) => {
