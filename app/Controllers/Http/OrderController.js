@@ -53,6 +53,7 @@ class OrderController {
     const items = requestObject.items;
     const date = requestObject.date
 
+
     let notValid = await validateItems(items, response)
 
     if(notValid)
@@ -62,6 +63,15 @@ class OrderController {
     order.manufacturer_id = manufacturer_id, order.cost = cost
     await order.save()
 
+    for (let item of items) {
+      for (var i = 0; i < item.quantity; i++) {
+        const product = await Product.findOrCreate({R: item.R}, {R: item.R, manufacturer_id: modelInstance.manufacturer_id, price: item.price})  // add R. if it doesn't exist
+        const sizes = item.sizes
+        for (size of sizes) {
+          const stockItem = await StockItem.create({color: item.color, R: product.id, size: size, order_id: modelInstance.id})
+        }
+      }
+    }
     return  response.json({status: "success"})
   }
 
@@ -69,7 +79,26 @@ class OrderController {
     let params =  request.get()
     const updateObject = request.post()
     const order = Order.find(params.id)
+  }
 
+  async delete ({request, response, params}) {
+    const rules = {
+      id: 'required|string'
+    }
+
+    const validation = await Validator.validate(params, rules)
+    if (validation.fails()){
+      return response.status(400).json({status: "error", message: "id required"})
+    }
+    try {
+      const order = await Order.findOrFail(params.id)
+      await order.delete()
+      return response.json({status: "success"})
+    } catch (e) {
+      if(e.name =='ModelNotFoundException')
+        return response.json({status: "error", message: "item not found"})
+      return response.status(500).json({status: 'error', message: 'server error'})
+      }
   }
 }
 
