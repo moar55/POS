@@ -19,6 +19,8 @@ import { OrdersComponent } from './orders/orders.component';
 import { EditStockItemComponent } from './edit-stock-item/edit-stock-item.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { OrderDetailsEditComponent } from './order-details-edit/order-details-edit.component';
+import { ProductsComponent } from './products/products.component';
+import { ManufacturerComponent } from './manufacturer/manufacturer.component';
 
 
 
@@ -33,7 +35,9 @@ import { OrderDetailsEditComponent } from './order-details-edit/order-details-ed
     OrdersComponent,
     EditStockItemComponent,
     HomePageComponent,
-    OrderDetailsEditComponent
+    OrderDetailsEditComponent,
+    ProductsComponent,
+    ManufacturerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,5 @@
+import { ManufacturerComponent } from './manufacturer/manufacturer.component';
+import { ProductsComponent } from './products/products.component';
 import { OrderDetailsEditComponent } from './order-details-edit/order-details-edit.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { EditStockItemComponent } from './edit-stock-item/edit-stock-item.component';
@@ -36,6 +38,12 @@ const routes: Routes = [
   },
   {
     path: 'orders/:id', component: OrderDetailsEditComponent,
+  },
+  {
+    path: 'products', component: ProductsComponent,
+  },
+  {
+    path: 'manufacturers', component: ManufacturerComponent,
   }
 ];
 
