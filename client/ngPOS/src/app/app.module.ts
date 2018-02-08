@@ -24,6 +24,8 @@ import { OrderDetailsEditComponent } from './order-details-edit/order-details-ed
 import { ProductsComponent } from './products/products.component';
 import { ManufacturerComponent } from './manufacturer/manufacturer.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
+
 
 
 
@@ -49,6 +51,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     FormsModule,
     AppRoutingModule,
     HttpModule,
+    AngularMultiSelectModule
 
   ],
   providers: [
