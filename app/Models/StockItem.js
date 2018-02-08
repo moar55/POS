@@ -49,6 +49,17 @@ class StockItem extends Model {
 
   }
 
+  static async fetchGroupByGen(where) {
+    return await this
+      .query()
+      .select('products.R','products.price','color', 'size')
+      .innerJoin('products', 'stock.R', 'products.id')
+      .innerJoin('manufacturers', 'products.manufacturer_id', 'manufacturers.id')
+      .groupBy('products.R','color', 'size')
+      .count('* as quantity')
+      .where(where)
+  }
+
   static async fetch() {
     return await this
       .query()

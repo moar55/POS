@@ -28,10 +28,11 @@ class OrderController {
     const order = await Order
       .query()
       .with('manufacturer')
-      .with('items')
       .where('orders.id', '=', params.id)
       .fetch()
-      response.json({status: "success", data: order})
+
+    const stock = await StockItem.fetchGroupByGen({order_id: params.id})
+      response.json({status: "success", data: {order: order, items: stock}})
   }
 
   async addOrder({ request, response, auth}) {
@@ -105,7 +106,7 @@ class OrderController {
           query()
           .where({R: item.R})
           .update({R: item.R, manufacturer_id: order.manufacturer_id, price: item.price})
-          
+
         const sizes = item.sizes
         for (let size of sizes) {
           const stockItem = await StockItem.create({color: item.color, R: product.id, size: size, order_id: order.id})

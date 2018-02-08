@@ -132,3 +132,4 @@ Route.get('api/orders/:id', 'OrderController.fetchByID').middleware('auth')
  */
 Route.post('api/orders', 'OrderController.addOrder').middleware('auth')
 Route.put('api/orders/:id', 'OrderController.update').middleware('auth')
+Route.delete('api/orders/:id', 'OrderController.delete').middleware('auth')
