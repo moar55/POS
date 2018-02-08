@@ -65,16 +65,17 @@ class OrderController {
     order.manufacturer_id = manufacturer_id, order.cost = cost
     await order.save()
 
-
+    let itemsArr = []
     for (let item of items) {
       for (var i = 0; i < item.quantity; i++) {
         const product = await Product.findOrCreate({R: item.R}, {R: item.R, manufacturer_id: order.manufacturer_id, price: item.price})  // add R. if it doesn't exist
         const sizes = item.sizes
         for (let size of sizes) {
-          const stockItem = await StockItem.create({color: item.color, R: product.id, size: size, order_id: order.id})
+          itemsArr.push({color: item.color, R: 6, size: size, order_id: order.id})
         }
       }
     }
+    await StockItem.createMany(itemsArr)
     return  response.json({status: "success"})
   }
 
@@ -100,7 +101,11 @@ class OrderController {
 
     for (let item of items) {
       for (var i = 0; i < item.quantity; i++) {
-        const product = await Product.findOrCreate({R: item.R}, {R: item.R, manufacturer_id: order.manufacturer_id, price: item.price})  // add R. if it doesn't exist
+        const product = await Product.
+          query()
+          .where({R: item.R})
+          .update({R: item.R, manufacturer_id: order.manufacturer_id, price: item.price})
+          
         const sizes = item.sizes
         for (let size of sizes) {
           const stockItem = await StockItem.create({color: item.color, R: product.id, size: size, order_id: order.id})
@@ -108,8 +113,6 @@ class OrderController {
       }
     }
     return  response.json({status: "success"})
-
-
   }
 
   async delete ({request, response, params}) {
