@@ -115,6 +115,7 @@ Route.get('api/stock/:R', 'StockController.fetchGroupBy').middleware('auth')
 Route.get('api/products', 'ProductController.query').middleware('auth')
 Route.get('api/products/all', 'ProductController.fetch').middleware('auth')
 Route.get('api/products/:R', 'ProductController.fetchByID').middleware('auth')
+Route.post('api/products/', 'ProductController.add').middleware('auth')
 Route.put('api/products/:R', 'ProductController.edit').middleware('auth')
 Route.delete('api/products/:R', 'ProductController.delete').middleware('auth')
 

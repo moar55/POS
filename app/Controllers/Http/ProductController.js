@@ -5,6 +5,22 @@ const Validator = use('Validator')
 
 class ProductController {
 
+
+  async add({ request, response}) {
+    const product = new Product()
+    const obj = request.post()
+    product.manufacturer_id = obj.manufacturer_id,product.price = obj.price,
+    product.R = obj.R
+    try {
+      await product.save()
+      response.json({status: "success"})
+    } catch (e) {
+      response.status(400).json({status: "error", message: e})
+    } finally {
+
+    }
+  }
+
   async fetch({request, response}) {
     const products = await Product.query().with('manufacturer').fetch()
     return response.json({status: "success", data: products})
