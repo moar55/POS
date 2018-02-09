@@ -28,8 +28,8 @@ export class ProductsService {
     });
 
   }
-  deleteProduct(id) {
-    return this.http.delete(`${this.baseUrl}/products/${id}`, {
+  deleteProduct(R) {
+    return this.http.delete(`${this.baseUrl}/products/${R}`, {
       withCredentials: true,
     });
 

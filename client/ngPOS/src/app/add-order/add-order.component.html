@@ -16,6 +16,7 @@
       <select [(ngModel)]="order.manufacturer_id" name="manfufacturer">
         <option *ngFor="let manufacturer of manufacturers" name="manufacturerID" [ngValue]="manufacturer.id">{{manufacturer.name}}</option>
       </select>
+
     </div>
   </fieldset>
   <fieldset>
@@ -26,19 +27,23 @@
 
 
       <label>R. : </label>
-      <input type="text" [(ngModel)]="item.r" name="R" required>
+      <input type="text" [(ngModel)]="item.R" [name]="'R' + index" required>
       <!-- <br> {{item |json}} item index {{i}} -->
 
       <label>Color: </label>
-      <input type="text" [(ngModel)]="item.color" name="color" required>
-      <label>Size: </label>
-      <select type="text" [(ngModel)]="item.size" name="size" required>
+      <input type="text" [(ngModel)]="item.color" [name]="'color' + index" required>
+      <!-- <label>Size: </label> -->
+      <!-- <select type="text" [(ngModel)]="item.size" [name]="'size' + index" required>
         <option *ngFor="let size of sizes" [ngValue]="size">{{size}}</option>
-      </select>
+      </select> -->
+      <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems[index]" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+        (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)" [name]="'sizes' + index">
+      </angular2-multiselect>
+
       <label>Quantity: </label>
-      <input id="quantity" type="number" name="quantity" min="1" [(ngModel)]="item.quantity" required (keyup)="calcTheCost()">
+      <input id="quantity" type="number" [name]="'quantity' + index" min="1" [(ngModel)]="item.quantity" required (keyup)="calcTheCost()">
       <label>Price: </label>
-      <input id="price" type="number" name="price" min="0" [(ngModel)]="item.price" required (keyup)="calcTheCost()">
+      <input id="price" type="number" [name]="'price' + index" min="0" [(ngModel)]="item.price" required (keyup)="calcTheCost()">
     </div>
     <button class="add_items" (click)="addItem()">
       <span class="glyphicon glyphicon-plus"></span>

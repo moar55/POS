@@ -1,5 +1,7 @@
 import { OrdersService } from './../orders.service';
 import { Component, OnInit } from '@angular/core';
+import { LoginComponent } from '../login/login.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-order',
@@ -7,45 +9,76 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-order.component.css']
 })
 export class AddOrderComponent implements OnInit {
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
   manufacturers: any;
   sizes: number[];
   item = {
-    r: null,
+    R: null,
     color: null,
-    size: null,
     quantity: null,
     price: null,
   };
   order = {
     manufacturer_id: null,
     cost: null,
-    items: [this.item,],
+    items: [],
   };
-  constructor(private orderServ: OrdersService) {
-
+  constructor(private orderServ: OrdersService,
+    private router: Router) {
   }
   addItem() {
-    let newItem = {
-      r: null,
+    const newItem = {
+      R: null,
       color: null,
-      size: null,
       quantity: null,
       price: null,
     };
 
-    newItem = Object.assign(newItem, this.item);
+    // newItem = Object.assign(newItem, this.item);
     this.order['items'].push(newItem);
+    console.log(this.order['items']);
+
   }
 
   ngOnInit() {
+    this.dropdownList = Array.from(Array(21).keys()).map((i) => {
+      return { 'id': i, 'itemName': i + 17 };
+    });
+    this.selectedItems = [
+
+    ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      text: 'Select Sizes',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      enableSearchFilter: true,
+      classes: 'myclass custom-class'
+    };
+    this.getManfList();
     // tslint:disable-next-line:forin
-    for (const i in [1, 2, 3]) {
+    for (const i in [1]) {
       // tslint:disable-next-line:no-shadowed-variable
       this.sizes = Array.from(Array(21).keys()).map((i) => i + 17);
       this.addItem();
     }
     // this.item.sizes = this.selectedItems;
-    this.getManfList();
+  }
+  onItemSelect(item: any) {
+    console.log(item);
+    console.log(this.selectedItems);
+  }
+  OnItemDeSelect(item: any) {
+    console.log(item);
+    console.log(this.selectedItems);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+  }
+  onDeSelectAll(items: any) {
+    console.log(items);
   }
   getManfList() {
     this.orderServ.getManfs()
@@ -80,6 +113,15 @@ export class AddOrderComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.order);
+    this.selectedItems = this.selectedItems.map((i) => i.map((item) => item.itemName));
+    for (let i = 0; i < this.order.items.length; i++) {
+      this.order.items[i].sizes = this.selectedItems[i];
+    }
+
+    console.log(this.order.items);
+
+    console.log(this.selectedItems);
+
     // check if order.items contain empty or null objects
     // this.order.items.forEach(item => {
 
@@ -96,8 +138,13 @@ export class AddOrderComponent implements OnInit {
     // });
     this.orderServ.addOrder(this.order)
       .subscribe(
-        res => console.log(res),
-        err => console.log(err)
+        res => {
+          console.log(res);
+          this.router.navigateByUrl('/orders');
+        },
+        err => {
+          console.log(err);
+        }
       );
   }
 

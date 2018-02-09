@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  productsList: [];
+  productsList: any;
 
   constructor(
     private productSer: ProductsService
@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
       );
   }
   deleteProduct(product) {
-    this.productSer.deleteProduct(product.id)
+    this.productSer.deleteProduct(product.R)
       .subscribe(
         res => {
           console.log(res);

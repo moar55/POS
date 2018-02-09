@@ -24,12 +24,18 @@ export class OrdersService {
     });
   }
   getOrderDetails(id) {
-    return this.http.get(`${this.baseUrl}/orders/${id}`);
+    return this.http.get(`${this.baseUrl}/orders/${id}`, {
+      withCredentials: true,
+    });
   }
   addOrder(order) {
-    return this.http.post(`${this.baseUrl}/orders`, order);
+    return this.http.post(`${this.baseUrl}/orders`, order, {
+      withCredentials: true,
+    });
   }
   deleteOrder(id) {
-    return this.http.delete(`${this.baseUrl}/orders/${id}`);
+    return this.http.delete(`${this.baseUrl}/orders/${id}`, {
+      withCredentials: true,
+    });
   }
 }
