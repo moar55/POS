@@ -21,17 +21,21 @@
     <tbody>
       <tr>
         <td>
-          <input type="text" [(ngModel)]="product.id">
+          <!-- <input type="text" [(ngModel)]="updatedProduct.update.id"> -->
+          {{product.id}}
         </td>
         <td>
-          <input type="text" [(ngModel)]="product.R"> </td>
+          <input type="text" [(ngModel)]="updatedProduct.update.R"> </td>
         <td>
-          <input type="text" [(ngModel)]="product.price">
+          <input type="text" [(ngModel)]="updatedProduct.update.price">
         </td>
         <td>
-          <input type="text" [(ngModel)]="product.manufacturer.name">
+          <select [(ngModel)]="updatedProduct.update.manufacturer_id" name="manfufacturer">
+            <option *ngFor="let manufacturer of manufacturers" name="manufacturerID" [ngValue]="manufacturer.id">{{manufacturer.name}}</option>
+          </select>
         </td>
       </tr>
     </tbody>
-    <button (click)="editProduct()">Done Editing ya m3lm</button>
   </table>
+  <button class="done-btn" (click)="editProduct()">Done</button>
+</div>

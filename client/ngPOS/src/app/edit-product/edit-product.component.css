@@ -23,3 +23,19 @@ th {
 small {
   color: bisque;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.done-btn {
+  background: #FDF20D;
+  font-size: 1.5em;
+  width: 300px;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: -2px 3px 10px;
+}
