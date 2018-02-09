@@ -55,7 +55,7 @@ async edit({ request, response, params }) {
       const product = await Product
         .query()
         .where('R', params.R)
-        .update(request.all())
+        .update(request.all().update)
         if(product == 0) throw 'R. not found'
       return response.json({success: true})
     } catch (e) {
