@@ -29,4 +29,7 @@ export class OrdersService {
   addOrder(order) {
     return this.http.post(`${this.baseUrl}/orders`, order);
   }
+  deleteOrder(id) {
+    return this.http.delete(`${this.baseUrl}/orders/${id}`);
+  }
 }

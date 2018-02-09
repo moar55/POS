@@ -26,12 +26,11 @@
         <td> {{product.manufacturer.name}} </td>
         <td>
           <a class="btn btn-info" routerLink="/products/{{product.R}}">
-            <!-- (click)="editStockItem(stockItem)" routerLink="/stock/{{stockItem.R}}" -->
             <i class="glyphicon glyphicon-pencil"></i>
           </a>
         </td>
         <td>
-          <button class="btn btn-danger">
+          <button class="btn btn-danger" (click)="deleteProduct(product)">
             <!-- make delete btn here -->
             <i class="glyphicon glyphicon-trash"></i>
           </button>

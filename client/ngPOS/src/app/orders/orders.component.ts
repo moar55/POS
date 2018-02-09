@@ -23,25 +23,36 @@ export class OrdersComponent implements OnInit {
   getOrdersList() {
     this.ordersService.list()
       .subscribe(
-      (res) => {
-        console.log('res is  ', res);
-        this.ordersList = res;
-        console.log('orders list is ', this.ordersList);
+        (res) => {
+          console.log('res is  ', res);
+          this.ordersList = res;
+          console.log('orders list is ', this.ordersList);
 
-      },
-      err => console.log(err)
+        },
+        err => console.log(err)
       );
   }
   getManfsList() {
     this.ordersService.getManfs()
       .subscribe(
-      res => {
-        console.log('manf list is ', res);
-        this.manufacturers = res;
-      },
-      err => console.log(err)
+        res => {
+          console.log('manf list is ', res);
+          this.manufacturers = res;
+        },
+        err => console.log(err)
       );
   }
+
+  delete(order) {
+    this.ordersService.deleteOrder(order.id)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err),
+
+
+    );
+  }
+
   // whatever() {
   //   for (let index = 0; index <= this.ordersList.length; index++) {
   //     this.ordersList.manufacturer_id = this.manufacturers.find(x => x.id = this.ordersList.manufacturer_id).name;

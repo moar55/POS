@@ -2,6 +2,7 @@ import { OrdersService } from './../orders.service';
 import { ProductsService } from './../products.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-product',
@@ -21,6 +22,7 @@ export class EditProductComponent implements OnInit {
   };
 
   constructor(
+    private location: Location,
     private route: ActivatedRoute,
     private productServ: ProductsService,
     private orderServ: OrdersService
@@ -40,9 +42,10 @@ export class EditProductComponent implements OnInit {
         (res: Response) => {
           console.log(res);
           this.product = res['data'];
-          this.updatedProduct.update.manufacturer_id = res.data.manufacturer_id;
-          this.updatedProduct.update.price = res.data.price;
-          this.updatedProduct.update.R = res.data.R;
+          let shit = res['data'];
+          this.updatedProduct.update.manufacturer_id = shit.manufacturer_id;
+          this.updatedProduct.update.price = shit.price;
+          this.updatedProduct.update.R = shit.R;
 
         },
         err => console.log(err),
@@ -64,9 +67,16 @@ export class EditProductComponent implements OnInit {
   editProduct() {
     this.productServ.editProduct(this.productR, this.updatedProduct)
       .subscribe(
-        res => console.log(res),
-        err => console.log(err)
-      );
+        res => {
+          console.log(res);
+          this.location.back();
+
+        },
+        err => {
+          console.log(err);
+          alert(err);
+        },
+    );
   }
 
 }

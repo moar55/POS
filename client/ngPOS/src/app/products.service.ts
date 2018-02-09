@@ -28,6 +28,12 @@ export class ProductsService {
     });
 
   }
+  deleteProduct(id) {
+    return this.http.delete(`${this.baseUrl}/products/${id}`, {
+      withCredentials: true,
+    });
+
+  }
 
 
 }

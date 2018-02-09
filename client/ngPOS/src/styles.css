@@ -47,6 +47,10 @@ body {
   /* overflow: hidden; */
 }
 
+tr {
+  transition: all 1.5s ease-in-out;
+}
+
 .btn-bellino {
   margin-top: 5%;
   width: 35%;
