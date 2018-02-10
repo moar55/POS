@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class ManufacturerService {
 
   headers;
-  baseUrl = 'http://localhost:3333/api';
+  baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) {
     this.headers = new Headers({ 'Content-Type': 'application/json' });
   }

@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class ProductsService {
 
-  baseUrl = 'http://localhost:3333/api';
-  // baseUrl = 'https://bellino-pos.herokuapp.com/api';
+  baseUrl = environment.apiUrl;
   headers;
   constructor(private http: HttpClient) {
     // TODO: See if possible to put baseUrl and headers setup in a file to be reused everywhere

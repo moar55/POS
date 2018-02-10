@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
 // import 'rxjs/add/operator/map';
 
 
@@ -13,8 +14,7 @@ export class LoginService {
   }
 
 
-  // baseUrl = 'https://bellino-pos.herokuapp.com/api';
-  baseUrl = 'http://localhost:3333/api';
+  baseUrl = environment.apiUrl;
   login(loginData) {
     return this.http.post(`${this.baseUrl}/login`, loginData, {
       withCredentials: true,
