@@ -1,5 +1,15 @@
-<ul style="color: yellow;">
+<!-- <ul style="color: yellow;">
   <li *ngFor="let manf of manfList">
     ID: &nbsp;{{manf.id}} -- {{manf.name}}
   </li>
-</ul>
+</ul> -->
+<div>
+  <h1>Manufacturer List</h1>
+  <ul>
+    <li>
+      <a *ngFor="let manf of manfList" href="#">ID: &nbsp;{{manf.id}} -- {{manf.name}}</a>
+    </li>
+  </ul>
+</div>
+
+<small style="color:orange">*more styling are details in the next version</small>

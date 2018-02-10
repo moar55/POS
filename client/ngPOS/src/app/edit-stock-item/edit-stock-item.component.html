@@ -1,5 +1,6 @@
 <h2>
-  Editing item with R: {{R}}
+  <!-- Editing item with R: {{R}} -->
+  Viewing item with R : {{R}}
 </h2>
 <h3>
   price: {{stockItemFullDetails.price}}
@@ -19,15 +20,20 @@
     <tbody>
       <tr *ngFor="let item of stockItem">
         <td>
-          <input type="text" required [(ngModel)]="item.color" /> </td>
-        <td>
-          <input type="text" required [(ngModel)]="item.size" />
+          <!-- <input type="text" required [(ngModel)]="item.color" />  -->
+          {{item.color}}
+
         </td>
         <td>
-          <input type="text" required [(ngModel)]="item.quantity" />
+          <!-- <input type="text" required [(ngModel)]="item.size" /> -->
+          {{item.size}}
+        </td>
+        <td>
+          <!-- <input type="text" required [(ngModel)]="item.quantity" /> -->
+          {{item.quantity}}
         </td>
       </tr>
     </tbody>
   </table>
-  <button (click)="doneEditing()">Done Editing</button>
+  <!-- <button (click)="doneEditing()">Done Editing</button> -->
 </div>

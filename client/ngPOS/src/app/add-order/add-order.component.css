@@ -35,6 +35,19 @@ label {
   margin: 2px 8px;
 }
 
+.add-order-fields {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px;
+}
+
+.cuppa-dropdown,
+angular2-multiselect {
+  margin: 0 6px !important;
+  width: 80px !important;
+}
+
 input,
 .input {
   padding: 5x;

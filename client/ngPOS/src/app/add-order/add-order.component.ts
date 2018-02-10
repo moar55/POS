@@ -51,11 +51,11 @@ export class AddOrderComponent implements OnInit {
     ];
     this.dropdownSettings = {
       singleSelection: false,
-      text: 'Select Sizes',
+      text: 'Sizes',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
-      classes: 'myclass custom-class'
+      classes: 'cuppa-dropdown-2'
     };
     this.getManfList();
     // tslint:disable-next-line:forin
