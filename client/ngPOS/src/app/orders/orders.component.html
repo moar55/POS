@@ -11,23 +11,26 @@
         <th>Manufacturer
         </th>
         <th>Cost</th>
-        <th>edit</th>
+        <!-- <th>edit</th> -->
         <th>delete</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let order of ordersList">
-        <td> {{order.id}} </td>
+
+        <td routerLink="/orders/{{order.id}}">
+          <a routerLink="/orders/{{order.id}}">{{order.id}}</a>
+        </td>
         <td>
           {{order.created_at | date}}
         </td>
         <td>{{order.manufacturer}} </td>
         <td> {{order.cost}} </td>
-        <td>
+        <!-- <td>
           <a class="btn btn-info" routerLink="/orders/{{order.id}}">
             <i class="glyphicon glyphicon-pencil"></i>
           </a>
-        </td>
+        </td> -->
         <td>
           <button class="btn btn-danger" (click)="delete(order)">
             <i class="glyphicon glyphicon-trash"></i>

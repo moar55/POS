@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  ordersList: any;
+  ordersList: [];
   manufacturers: any;
 
   constructor(private ordersService: OrdersService) { }
@@ -46,7 +46,10 @@ export class OrdersComponent implements OnInit {
   delete(order) {
     this.ordersService.deleteOrder(order.id)
       .subscribe(
-        res => console.log(res),
+        res => {
+          console.log(res);
+          this.ordersList.splice(this.ordersList.indexOf(order), 1);
+        },
         err => console.log(err),
 
 

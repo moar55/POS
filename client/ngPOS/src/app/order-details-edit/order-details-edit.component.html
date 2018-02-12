@@ -1,38 +1,45 @@
 <h2>
-  You are now Editing order with ID: {{order.id}}
+  You are now Editing order with ID: {{order.order[0].id}}
 </h2>
 <h3>
-  It has costed you: {{order.cost | currency:'EGP'}}
+  It has costed you: {{order.order[0].cost | currency:'EGP'}}
 </h3>
-<h3>manf: {{order.manufacturer.name}}</h3>
+<h3>manf: {{order.order[0].manufacturer.name}}</h3>
 
 
-<div class="container">
+<div class="container" *ngIf="order.items.length > 0">
   <table class="table table-responsive table-striped">
     <thead>
       <tr>
         <th>R</th>
         <th>Color</th>
         <th>Size</th>
-        <!-- <th>size</th> -->
         <th>Price</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of order.items">
         <td>
-          <input type="text" required [(ngModel)]="item.R" /> </td>
-        <td>
-          <input type="text" required [(ngModel)]="item.color" />
+          <!-- <input type="text" required [(ngModel)]="item.R" /> -->
+          {{item.R}}
         </td>
         <td>
-          <input type="text" required [(ngModel)]="item.size" />
+          <!-- <input type="text" required [(ngModel)]="item.color" /> -->
+          {{item.color}}
         </td>
         <td>
-          <input type="text" required [(ngModel)]="item.price" />
+          <!-- <input type="text" required [(ngModel)]="item.size" /> -->
+          {{item.size}}
+        </td>
+        <td>
+          {{item.price}}
+          <!-- <input type="text" required [(ngModel)]="item.price" /> -->
         </td>
       </tr>
     </tbody>
   </table>
-  <!-- <button (click)="doneEditing()">Done Editing</button> -->
 </div>
+<div *ngIf="order.items.length == 0">
+  the order is empty for some reason
+</div>
+<!-- <button (click)="doneEditing()">Done Editing</button> -->

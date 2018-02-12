@@ -22,12 +22,14 @@ export class OrderDetailsEditComponent implements OnInit {
     this.orderServ.getOrderDetails(orderID)
       .subscribe(res => {
         console.log('res is', res);
-        this.order = res;
+        this.order = res['data'];
         // this.orderDetails = res.items;
+        console.log('order ', this.order);
+
         console.log('order items are', this.order.items);
 
       },
-      err => console.log(err),
+        err => console.log(err),
     );
   }
 }
