@@ -30,5 +30,5 @@ Run the following command to run startup migrations.
 adonis migration:run
 ```
 
-###Api URL
+### Api URL
 https://bellino-pos.herokuapp.com/api
